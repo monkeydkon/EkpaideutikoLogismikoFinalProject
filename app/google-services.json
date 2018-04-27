@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "610698420961",
+    "firebase_url": "https://educational-software.firebaseio.com",
+    "project_id": "educational-software",
+    "storage_bucket": "educational-software.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:610698420961:android:d52dc62c5b0671de",
+        "android_client_info": {
+          "package_name": "com.nplab.monkeydkon.ekpaideutikologismikofinalproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "610698420961-oniep64ge7863scd809ph76bvi94b20h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPFwjw0HMRDDgCONuld1gjDH2dTM5LRTo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
