@@ -19,6 +19,7 @@ public class SingupActivity extends AppCompatActivity {
 
     EditText userEditText, passEditText, nameEditText;
     Button registerButton;
+    TextView textView2;
 
     private DatabaseReference mDatabase;
 
@@ -30,6 +31,7 @@ public class SingupActivity extends AppCompatActivity {
         userEditText = findViewById(R.id.userEditText);
         passEditText = findViewById(R.id.passEditText);
         nameEditText = findViewById(R.id.nameEditText);
+        textView2 = findViewById(R.id.textView2);
 
         registerButton = findViewById(R.id.registerButton);
 
@@ -68,5 +70,15 @@ public class SingupActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        ExitAppMessage exitAppMessage = new ExitAppMessage();
+        exitAppMessage.backMessage(SingupActivity.this, this);
+    }
+
+    public void login(View view){
+        startActivity(new Intent(SingupActivity.this, LoginActivity.class));
     }
 }

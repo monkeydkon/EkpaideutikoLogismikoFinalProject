@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -17,6 +18,7 @@ import com.google.firebase.database.ValueEventListener;
 public class LoginActivity extends AppCompatActivity {
 
     EditText editText,editText2;
+    TextView textView3;
 
     Button lgnBTN;
 
@@ -29,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
 
         editText = findViewById(R.id.editText);
         editText2 = findViewById(R.id.editText2);
+        textView3 = findViewById(R.id.textView3);
 
         lgnBTN = findViewById(R.id.lgnBTN);
 
@@ -53,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                     Toast.makeText(getApplicationContext(),"You are now logged in.",Toast.LENGTH_SHORT).show();
 
-                                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                                    Intent intent = new Intent(getApplicationContext(),MainContentActivity.class);
                                     startActivity(intent);
                                 }else{
                                     Toast.makeText(getApplicationContext(),"Wrong password. Try again.",Toast.LENGTH_SHORT).show();
@@ -66,6 +69,8 @@ public class LoginActivity extends AppCompatActivity {
 
                             }
                         });
+                    }else{
+                        Toast.makeText(getApplicationContext(),"This username doesn't exist", Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -75,5 +80,16 @@ public class LoginActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        ExitAppMessage exitAppMessage = new ExitAppMessage();
+        exitAppMessage.backMessage(LoginActivity.this, this);
+    }
+
+    public void signup(View view){
+        startActivity(new Intent(LoginActivity.this, SingupActivity.class));
+
     }
 }

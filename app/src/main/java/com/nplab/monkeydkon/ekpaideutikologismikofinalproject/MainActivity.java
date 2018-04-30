@@ -1,6 +1,8 @@
 package com.nplab.monkeydkon.ekpaideutikologismikofinalproject;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,8 +15,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
-
-    private DatabaseReference mDatabase;
 
     TextView textView;
 
@@ -37,10 +37,6 @@ public class MainActivity extends AppCompatActivity {
         textView.setAlpha(0f);
 
         textView.animate().alpha(1f).setDuration(1500);
-
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-
-       // that was a test -- mDatabase.child("hi").setValue("this is a test");
     }
 
     public void login(View view){
@@ -54,5 +50,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(MainActivity.this, SingupActivity.class));
 
 
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        ExitAppMessage exitAppMessage = new ExitAppMessage();
+        exitAppMessage.backMessage(MainActivity.this, this);
     }
 }
