@@ -57,6 +57,7 @@ public class LoginActivity extends AppCompatActivity {
                                     Toast.makeText(getApplicationContext(),"You are now logged in.",Toast.LENGTH_SHORT).show();
 
                                     Intent intent = new Intent(getApplicationContext(),MainContentActivity.class);
+                                    intent.putExtra("whoIsLoggedIn", username);
                                     startActivity(intent);
                                 }else{
                                     Toast.makeText(getApplicationContext(),"Wrong password. Try again.",Toast.LENGTH_SHORT).show();

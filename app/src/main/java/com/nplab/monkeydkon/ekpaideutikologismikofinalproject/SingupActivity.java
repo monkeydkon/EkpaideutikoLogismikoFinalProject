@@ -58,6 +58,11 @@ public class SingupActivity extends AppCompatActivity {
                     }else{
                         mDatabase.child("users").child(username).child("password").setValue(password);
                         mDatabase.child("users").child(username).child("name").setValue(name);
+                        mDatabase.child("users").child(username).child("progress").child("concepts").setValue(false);
+                        mDatabase.child("users").child(username).child("progress").child("statements").setValue(false);
+                        mDatabase.child("users").child(username).child("progress").child("arrays").setValue(false);
+                        mDatabase.child("users").child(username).child("progress").child("classes").setValue(false);
+                        mDatabase.child("users").child(username).child("progress").child("certificate").setValue(false);
                         Toast.makeText(getApplicationContext(),"You successfully signed up",Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                         startActivity(intent);
