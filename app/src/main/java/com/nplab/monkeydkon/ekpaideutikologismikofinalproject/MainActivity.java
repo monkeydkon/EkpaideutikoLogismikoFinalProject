@@ -56,6 +56,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         ExitAppMessage exitAppMessage = new ExitAppMessage();
-        exitAppMessage.backMessage(MainActivity.this, this);
+        exitAppMessage.backMessage(MainActivity.this, this, "You are about to exit. Are you sure?");
     }
 }

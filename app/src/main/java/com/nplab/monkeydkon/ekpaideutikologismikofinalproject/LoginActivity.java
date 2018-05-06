@@ -86,7 +86,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         ExitAppMessage exitAppMessage = new ExitAppMessage();
-        exitAppMessage.backMessage(LoginActivity.this, this);
+        exitAppMessage.backMessage(LoginActivity.this, this, "You are about to exit. Are you sure?");
     }
 
     public void signup(View view){

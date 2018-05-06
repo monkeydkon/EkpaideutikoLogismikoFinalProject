@@ -80,7 +80,7 @@ public class SingupActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         ExitAppMessage exitAppMessage = new ExitAppMessage();
-        exitAppMessage.backMessage(SingupActivity.this, this);
+        exitAppMessage.backMessage(SingupActivity.this, this, "You are about to exit. Are you sure?");
     }
 
     public void login(View view){

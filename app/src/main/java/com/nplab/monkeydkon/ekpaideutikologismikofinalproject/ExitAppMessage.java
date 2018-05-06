@@ -7,9 +7,9 @@ import android.support.v7.app.AlertDialog;
 
 public class ExitAppMessage {
 
-    public void backMessage(final Activity activity, Context context) {
+    public void backMessage(final Activity activity, Context context, String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage("Are you sure you want to exit?")
+        builder.setMessage(message)
                 .setCancelable(false)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {

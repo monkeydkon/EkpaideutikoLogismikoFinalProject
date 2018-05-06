@@ -101,18 +101,39 @@ public class MainContentActivity extends AppCompatActivity {
     }
 
     public void ifStatementAndLoops(View view){
-        //todo
+        if(!conceptsProgress){
+            Toast.makeText(this, "You first have to complete all the previous chapters.", Toast.LENGTH_SHORT).show();
+        }else{
+            //todo
+        }
     }
 
     public void arrays(View view){
-        //todo
+        if(!statementsProgress){
+            Toast.makeText(this, "You first have to complete all the previous chapters.", Toast.LENGTH_SHORT).show();
+        }else{
+            //todo
+        }
     }
 
     public void classesAndObjects(View view){
-        //todo
+        if(!arraysProgress){
+            Toast.makeText(this, "You first have to complete all the previous chapters.", Toast.LENGTH_SHORT).show();
+        }else{
+            //todo
+        }
     }
 
     public void certificate(View view){
-        //todo
+        if(!classesProgress){
+            Toast.makeText(this, "You first have to complete all the previous chapters.", Toast.LENGTH_SHORT).show();
+        }else{
+            //todo
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+
     }
 }
