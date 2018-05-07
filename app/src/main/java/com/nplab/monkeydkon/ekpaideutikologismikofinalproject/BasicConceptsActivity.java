@@ -93,4 +93,56 @@ public class BasicConceptsActivity extends AppCompatActivity {
         });
 
     }
+    
+    public void introClick(View view){
+        // TODO: 7/5/2018
+    }
+    
+    public void commentsClick(View view){
+        if(!intro){
+            Toast.makeText(this,"You first need to complete all other sections",Toast.LENGTH_SHORT).show();
+        }else{
+            // TODO: 7/5/2018
+        }
+    }
+    
+    public void variablesClick(View view){
+        if(!comments){
+            Toast.makeText(this,"You first need to complete all other sections",Toast.LENGTH_SHORT).show();
+        }else{
+            // TODO: 7/5/2018
+        }
+    }
+    
+    public void incrementClick(View view){
+        if(!variables){
+            Toast.makeText(this,"You first need to complete all other sections",Toast.LENGTH_SHORT).show();
+        }else{
+            // TODO: 7/5/2018
+        }
+    }
+    
+    public void stringsClick(View view){
+        if(!increment){
+            Toast.makeText(this,"You first need to complete all other sections",Toast.LENGTH_SHORT).show();
+        }else{
+            // TODO: 7/5/2018
+        }
+    }
+    
+    public void inputClick(View view){
+        if(!strings){
+            Toast.makeText(this,"You first need to complete all other sections",Toast.LENGTH_SHORT).show();
+        }else{
+            // TODO: 7/5/2018
+        }
+    }
+    
+    public void quizClick(View view){
+        if(!input){
+            Toast.makeText(this,"You first need to complete all other sections",Toast.LENGTH_SHORT).show();
+        }else{
+            // TODO: 7/5/2018
+        }
+    }
 }
