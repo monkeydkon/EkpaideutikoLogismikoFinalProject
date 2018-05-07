@@ -26,7 +26,7 @@ public class MainContentActivity extends AppCompatActivity {
 
     Boolean arraysProgress;
     Boolean conceptsProgress;
-    Boolean cerificateProgress;
+    Boolean certificateProgress;
     Boolean statementsProgress;
     Boolean classesProgress;
 
@@ -53,7 +53,7 @@ public class MainContentActivity extends AppCompatActivity {
                 statementsProgress = (Boolean) dataSnapshot.child("statements").getValue();
                 arraysProgress = (Boolean) dataSnapshot.child("arrays").getValue();
                 classesProgress = (Boolean) dataSnapshot.child("classes").getValue();
-                cerificateProgress = (Boolean) dataSnapshot.child("certificate").getValue();
+                certificateProgress = (Boolean) dataSnapshot.child("certificate").getValue();
 
                 if(conceptsProgress){
                     learnBasicConcepts.setImageDrawable(getResources().getDrawable(R.drawable.first_green));
@@ -79,7 +79,7 @@ public class MainContentActivity extends AppCompatActivity {
                     learnClassesAndObjects.setImageDrawable(getResources().getDrawable(R.drawable.fourth_red));
                 }
 
-                if(cerificateProgress){
+                if(certificateProgress){
                     takeCertificate.setImageDrawable(getResources().getDrawable(R.drawable.fifth_green));
                 }else{
                     takeCertificate.setImageDrawable(getResources().getDrawable(R.drawable.fifth_red));
@@ -91,9 +91,6 @@ public class MainContentActivity extends AppCompatActivity {
 
             }
         });
-
-
-
     }
 
     public void basicConcepts(View view){

@@ -95,7 +95,9 @@ public class BasicConceptsActivity extends AppCompatActivity {
     }
     
     public void introClick(View view){
-        // TODO: 7/5/2018
+        Intent intent = new Intent(getApplicationContext(),ConceptsIntroActivity.class);
+        intent.putExtra("whoIsLoggedIn", username);
+        startActivity(intent);
     }
     
     public void commentsClick(View view){
