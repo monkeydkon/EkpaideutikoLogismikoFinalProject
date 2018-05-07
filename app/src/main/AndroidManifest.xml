@@ -24,7 +24,8 @@
         <activity
             android:name=".SingupActivity"
             android:noHistory="true" />
-        <activity android:name=".MainContentActivity"></activity>
+        <activity android:name=".MainContentActivity" />
+        <activity android:name=".BasicConceptsActivity"></activity>
     </application>
 
 </manifest>

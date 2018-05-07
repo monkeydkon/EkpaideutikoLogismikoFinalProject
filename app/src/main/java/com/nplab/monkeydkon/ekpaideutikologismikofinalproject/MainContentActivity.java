@@ -97,7 +97,9 @@ public class MainContentActivity extends AppCompatActivity {
     }
 
     public void basicConcepts(View view){
-        //todo
+        Intent intent = new Intent(getApplicationContext(),BasicConceptsActivity.class);
+        intent.putExtra("whoIsLoggedIn", username);
+        startActivity(intent);
     }
 
     public void ifStatementAndLoops(View view){
