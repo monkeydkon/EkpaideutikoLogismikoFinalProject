@@ -26,7 +26,11 @@
             android:noHistory="true" />
         <activity android:name=".MainContentActivity" />
         <activity android:name=".BasicConceptsActivity" />
-        <activity android:name=".ConceptsIntroActivity"></activity>
+        <activity android:name=".ConceptsIntroActivity" />
+        <activity
+            android:name=".ConceptsCommentsActivity"
+            android:label="@string/title_activity_concepts_comments"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

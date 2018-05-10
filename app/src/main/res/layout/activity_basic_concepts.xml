@@ -12,6 +12,7 @@
         android:id="@+id/cardView7"
         android:layout_width="132dp"
         android:layout_height="120dp"
+        android:layout_marginBottom="8dp"
         android:layout_marginStart="48dp"
         android:layout_marginTop="20dp"
         android:onClick="quizClick"
@@ -19,8 +20,10 @@
         app:cardCornerRadius="3dp"
         app:cardElevation="4dp"
         app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView5">
+        app:layout_constraintTop_toBottomOf="@+id/cardView5"
+        app:layout_constraintVertical_bias="0.0">
 
         <RelativeLayout
             android:id="@+id/seventhRelative"
@@ -61,6 +64,7 @@
         android:layout_width="132dp"
         android:layout_height="120dp"
         android:layout_marginEnd="48dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
         android:onClick="inputClick"
         app:cardBackgroundColor="?attr/colorBackgroundFloating"
@@ -68,6 +72,8 @@
         app:cardElevation="4dp"
         app:cardUseCompatPadding="true"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/cardView5"
         app:layout_constraintTop_toBottomOf="@+id/cardView4">
 
         <RelativeLayout
@@ -196,7 +202,6 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:text="2 Questions"
                 android:textColor="?attr/colorBackgroundFloating" />
         </RelativeLayout>
     </android.support.v7.widget.CardView>
@@ -206,6 +211,7 @@
         android:layout_width="132dp"
         android:layout_height="120dp"
         android:layout_marginEnd="48dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:onClick="commentsClick"
         app:cardBackgroundColor="?attr/colorBackgroundFloating"
@@ -213,6 +219,8 @@
         app:cardElevation="4dp"
         app:cardUseCompatPadding="true"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/cardView"
         app:layout_constraintTop_toTopOf="parent">
 
         <RelativeLayout
@@ -302,6 +310,7 @@
         android:layout_width="132dp"
         android:layout_height="120dp"
         android:layout_marginEnd="48dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
         android:onClick="incrementClick"
         app:cardBackgroundColor="?attr/colorBackgroundFloating"
@@ -309,6 +318,8 @@
         app:cardElevation="4dp"
         app:cardUseCompatPadding="true"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/cardView3"
         app:layout_constraintTop_toBottomOf="@+id/cardView2">
 
         <RelativeLayout
