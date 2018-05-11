@@ -114,7 +114,9 @@ public class BasicConceptsActivity extends AppCompatActivity {
         if(!comments){
             Toast.makeText(this,"You first need to complete all other sections",Toast.LENGTH_SHORT).show();
         }else{
-            // TODO: 7/5/2018
+            Intent intent = new Intent(getApplicationContext(),ConceptsVariablesActivity.class);
+            intent.putExtra("whoIsLoggedIn", username);
+            startActivity(intent);
         }
     }
     

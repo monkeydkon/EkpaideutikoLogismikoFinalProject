@@ -31,7 +31,8 @@
             android:name=".ConceptsCommentsActivity"
             android:label="@string/title_activity_concepts_comments"
             android:theme="@style/AppTheme" />
-        <activity android:name=".ConceptCommentsTestActivitty"></activity>
+        <activity android:name=".ConceptCommentsTestActivitty" />
+        <activity android:name=".ConceptsVariablesActivity"></activity>
     </application>
 
 </manifest>

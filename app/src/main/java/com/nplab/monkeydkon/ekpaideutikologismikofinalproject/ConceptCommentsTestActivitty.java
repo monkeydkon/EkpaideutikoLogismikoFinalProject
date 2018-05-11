@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.RadioGroup.OnCheckedChangeListener;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -13,9 +15,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
 
-public class ConceptCommentsTestActivitty extends AppCompatActivity {
+public class ConceptCommentsTestActivitty extends AppCompatActivity{
 
     String username;
 
@@ -23,11 +24,15 @@ public class ConceptCommentsTestActivitty extends AppCompatActivity {
 
     TextView question;
 
-    RadioGroup radioGroup;
+    public RadioGroup radioGroup;
 
     RadioButton radio1;
     RadioButton radio2;
     RadioButton radio3;
+
+    Boolean correct = false;
+
+    int getValue = 1;
 
 
     @Override
@@ -42,10 +47,12 @@ public class ConceptCommentsTestActivitty extends AppCompatActivity {
 
         question =findViewById(R.id.question);
         radioGroup = findViewById(R.id.radioGroup);
+        radioGroup.clearCheck();
 
-        radio1 = findViewById(R.id.radioButton2);
-        radio2 = findViewById(R.id.radioButton3);
-        radio3 = findViewById(R.id.radioButton4);
+
+        radio1 = findViewById(R.id.first);
+        radio2 = findViewById(R.id.second);
+        radio3 = findViewById(R.id.third);
 
         mDatabase.child("questions").child("basic").child("comments").child("first").addValueEventListener(new ValueEventListener() {
             @Override
@@ -62,6 +69,65 @@ public class ConceptCommentsTestActivitty extends AppCompatActivity {
             }
         });
 
+        radioGroup.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+
+                switch (checkedId){
+                    case R.id.first:
+                        mDatabase.child("questions").child("basic").child("comments").child("first").child("answers").child("correct").addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                switch (Integer.parseInt(dataSnapshot.getValue().toString())){
+                                    case 1:
+                                        break;
+                                    case 2:
+                                        mDatabase.child("questions").child("basic").child("comments").child("first").child("mistakes").addListenerForSingleValueEvent(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                                                getValue = Integer.parseInt(dataSnapshot.getValue().toString());
+                                                getValue++;
+
+                                                mDatabase.child("questions").child("basic").child("comments").child("first").child("mistakes").setValue(getValue);
+
+                                                return;
+
+
+                                            }
+
+                                            @Override
+                                            public void onCancelled(DatabaseError databaseError) {
+
+                                            }
+
+
+                                        });
+
+                                        break;
+
+
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(DatabaseError databaseError) {
+
+                            }
+                        });
+
+                        break;
+
+                    case R.id.second:
+                        break;
+                    case R.id.third:
+                        break;
+                }
+            }
+        });
+
 
     }
+
 }

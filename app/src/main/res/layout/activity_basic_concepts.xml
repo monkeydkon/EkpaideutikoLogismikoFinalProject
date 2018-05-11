@@ -105,7 +105,6 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:text="2 Questions"
                 android:textColor="?attr/colorBackgroundFloating" />
         </RelativeLayout>
     </android.support.v7.widget.CardView>
@@ -142,9 +141,9 @@
                 android:id="@+id/textView14"
                 android:layout_width="59dp"
                 android:layout_height="wrap_content"
-                android:layout_alignEnd="@+id/textView15"
                 android:layout_alignParentTop="true"
-                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="17dp"
                 android:text="Strings" />
 
             <TextView
@@ -153,7 +152,6 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:text="2 Questions"
                 android:textColor="?attr/colorBackgroundFloating" />
         </RelativeLayout>
     </android.support.v7.widget.CardView>
@@ -252,7 +250,6 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:text="3 Questions"
                 android:textColor="?attr/colorBackgroundFloating" />
         </RelativeLayout>
     </android.support.v7.widget.CardView>
@@ -300,7 +297,6 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:text="2 Questions"
                 android:textColor="?attr/colorBackgroundFloating" />
         </RelativeLayout>
     </android.support.v7.widget.CardView>
@@ -351,7 +347,6 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:text="3 Questions"
                 android:textColor="?attr/colorBackgroundFloating" />
         </RelativeLayout>
     </android.support.v7.widget.CardView>

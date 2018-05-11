@@ -22,6 +22,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class ConceptsCommentsActivity extends AppCompatActivity {
 
     private static final String TAG = "ConceptsCommentsActivity";
@@ -33,6 +39,9 @@ public class ConceptsCommentsActivity extends AppCompatActivity {
     Button done;
 
     String username;
+
+    private DatabaseReference mDatabase;
+
 
 
     @Override
@@ -52,6 +61,9 @@ public class ConceptsCommentsActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         username = intent.getStringExtra("whoIsLoggedIn");
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
     }
 
     private void setupViewPager(ViewPager viewPager){
@@ -63,7 +75,8 @@ public class ConceptsCommentsActivity extends AppCompatActivity {
     }
 
     public void done(View view){
-        Intent intent = new Intent(getApplicationContext(),ConceptCommentsTestActivitty.class);
+        mDatabase.child("users").child(username).child("conceptsProgress").child("comments").setValue(true);
+        Intent intent = new Intent(getApplicationContext(),BasicConceptsActivity.class);
         intent.putExtra("whoIsLoggedIn", username);
         startActivity(intent);
     }
