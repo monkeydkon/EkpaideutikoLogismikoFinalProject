@@ -36,7 +36,8 @@
         <activity android:name=".ConceptsStringsActivity" />
         <activity android:name=".ConceptsInputActivity" />
         <activity android:name=".ConceptsTestFirstActivity" />
-        <activity android:name=".ConceptsTestSecondActivity"></activity>
+        <activity android:name=".ConceptsTestSecondActivity" />
+        <activity android:name=".StatementsActivity"></activity>
     </application>
 
 </manifest>

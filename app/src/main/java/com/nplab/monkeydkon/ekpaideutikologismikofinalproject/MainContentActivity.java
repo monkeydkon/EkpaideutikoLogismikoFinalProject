@@ -103,7 +103,9 @@ public class MainContentActivity extends AppCompatActivity {
         if(!conceptsProgress){
             Toast.makeText(this, "You first have to complete all the previous chapters.", Toast.LENGTH_SHORT).show();
         }else{
-            //todo
+            Intent intent = new Intent(getApplicationContext(),StatementsActivity.class);
+            intent.putExtra("whoIsLoggedIn", username);
+            startActivity(intent);
         }
     }
 
