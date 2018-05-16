@@ -12,5 +12,5 @@ public class StatementsIfsActivity extends AppCompatActivity {
     }
 
     // TODO: 16/5/2018 todo todo todo
-    
+
 }
