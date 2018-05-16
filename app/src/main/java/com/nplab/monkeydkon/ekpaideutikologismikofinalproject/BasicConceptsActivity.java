@@ -23,7 +23,6 @@ public class BasicConceptsActivity extends AppCompatActivity {
     String username;
 
     boolean comments;
-    boolean increment;
     boolean input;
     boolean intro;
     boolean quiz;
@@ -42,7 +41,6 @@ public class BasicConceptsActivity extends AppCompatActivity {
         final RelativeLayout firstRelative = findViewById(R.id.firstRelative);
         final RelativeLayout secondRelative = findViewById(R.id.secondRelative);
         final RelativeLayout thirdRelative = findViewById(R.id.thirdRelative);
-        final RelativeLayout fourthRelative = findViewById(R.id.fourthRelative);
         final RelativeLayout fifthRelative = findViewById(R.id.fifthRelative);
         final RelativeLayout sixthRelative = findViewById(R.id.sixthRelative);
         final RelativeLayout seventhRelative = findViewById(R.id.seventhRelative);
@@ -56,7 +54,6 @@ public class BasicConceptsActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 comments = (Boolean) dataSnapshot.child("comments").getValue();
-                increment = (Boolean) dataSnapshot.child("increment").getValue();
                 input = (Boolean) dataSnapshot.child("input").getValue();
                 intro = (Boolean) dataSnapshot.child("intro").getValue();
                 quiz = (Boolean) dataSnapshot.child("quiz").getValue();
@@ -71,9 +68,6 @@ public class BasicConceptsActivity extends AppCompatActivity {
                 }
                 if(variables){
                     thirdRelative.setBackgroundColor(Color.parseColor("#d1f59a"));
-                }
-                if(increment){
-                    fourthRelative.setBackgroundColor(Color.parseColor("#d1f59a"));
                 }
                 if(strings){
                     fifthRelative.setBackgroundColor(Color.parseColor("#d1f59a"));
@@ -120,19 +114,13 @@ public class BasicConceptsActivity extends AppCompatActivity {
         }
     }
     
-    public void incrementClick(View view){
+    public void stringsClick(View view){
         if(!variables){
             Toast.makeText(this,"You first need to complete all other sections",Toast.LENGTH_SHORT).show();
         }else{
-            // TODO: 7/5/2018
-        }
-    }
-    
-    public void stringsClick(View view){
-        if(!increment){
-            Toast.makeText(this,"You first need to complete all other sections",Toast.LENGTH_SHORT).show();
-        }else{
-            // TODO: 7/5/2018
+            Intent intent = new Intent(getApplicationContext(),ConceptsStringsActivity.class);
+            intent.putExtra("whoIsLoggedIn", username);
+            startActivity(intent);
         }
     }
     
@@ -140,7 +128,9 @@ public class BasicConceptsActivity extends AppCompatActivity {
         if(!strings){
             Toast.makeText(this,"You first need to complete all other sections",Toast.LENGTH_SHORT).show();
         }else{
-            // TODO: 7/5/2018
+            Intent intent = new Intent(getApplicationContext(),ConceptsInputActivity.class);
+            intent.putExtra("whoIsLoggedIn", username);
+            startActivity(intent);
         }
     }
     
@@ -148,7 +138,9 @@ public class BasicConceptsActivity extends AppCompatActivity {
         if(!input){
             Toast.makeText(this,"You first need to complete all other sections",Toast.LENGTH_SHORT).show();
         }else{
-            // TODO: 7/5/2018
+            Intent intent = new Intent(getApplicationContext(),ConceptsTestFirstActivity.class);
+            intent.putExtra("whoIsLoggedIn", username);
+            startActivity(intent);
         }
     }
 }

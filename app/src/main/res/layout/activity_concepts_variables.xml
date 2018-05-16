@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ConceptsVariablesActivity">
 
+
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="0dp"
@@ -21,6 +22,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
+
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -28,7 +30,7 @@
             <android.support.v7.widget.CardView
                 android:id="@+id/cardView11"
                 android:layout_width="0dp"
-                android:layout_height="446dp"
+                android:layout_height="354dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +38,65 @@
 
                 <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="407dp">
+
+                    <TextView
+                        android:id="@+id/textView20"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="32dp"
+                        android:text="String"
+                        android:textColor="?attr/colorPrimary"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.023"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cardView10" />
+
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/cardView10"
+                        android:layout_width="315dp"
+                        android:layout_height="27dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="12dp"
+                        android:background="#ccc"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.216"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView25">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#f3efef">
+
+                            <TextView
+                                android:id="@+id/textView27"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="28dp"
+                                android:text="int number = 1;" />
+
+                            <view
+                                class="android.support.v7.widget.ActionMenuView"
+                                id="@+id/view"
+                                layout_alignParentBottom="true"
+                                layout_alignParentStart="true"
+                                layout_centerVertical="true"
+                                layout_marginBottom="0dp"
+                                layout_marginStart="71dp"
+                                android:layout_width="11dp"
+                                android:layout_height="match_parent"
+                                android:background="?attr/colorPrimaryDark" />
+
+                        </RelativeLayout>
+
+
+                    </android.support.v7.widget.CardView>
 
                     <TextView
                         android:id="@+id/textView21"
@@ -104,16 +164,17 @@
                         app:layout_constraintTop_toBottomOf="@+id/textView23" />
 
                     <android.support.v7.widget.CardView
+                        android:id="@+id/cardView12"
                         android:layout_width="315dp"
                         android:layout_height="27dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginTop="8dp"
                         android:background="#ccc"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.216"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView25">
+                        app:layout_constraintTop_toBottomOf="@+id/textView20">
 
                         <RelativeLayout
                             android:layout_width="match_parent"
@@ -127,7 +188,7 @@
                                 android:layout_alignParentStart="true"
                                 android:layout_centerVertical="true"
                                 android:layout_marginStart="28dp"
-                                android:text="int number = 1;" />
+                                android:text='String name = "George";' />
 
                             <view
                                 class="android.support.v7.widget.ActionMenuView"
@@ -142,11 +203,49 @@
                                 android:background="?attr/colorPrimaryDark" />
 
                         </RelativeLayout>
+
+
                     </android.support.v7.widget.CardView>
 
+                    <TextView
+                        android:id="@+id/textView26"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="32dp"
+                        android:text=": sequence of charachters"
+                        app:layout_constraintBottom_toTopOf="@+id/cardView12"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.007"
+                        app:layout_constraintStart_toEndOf="@+id/textView20"
+                        app:layout_constraintTop_toBottomOf="@+id/cardView10" />
+
+
                 </android.support.constraint.ConstraintLayout>
+
+
             </android.support.v7.widget.CardView>
+
+
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="408dp"
+        android:onClick="done"
+        android:text="Done"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/scrollView2"
+        app:layout_constraintVertical_bias="0.0" />
 
 </android.support.constraint.ConstraintLayout>

@@ -90,7 +90,7 @@ public class ConceptCommentsTestActivitty extends AppCompatActivity{
                                                 getValue = Integer.parseInt(dataSnapshot.getValue().toString());
                                                 getValue++;
 
-                                                mDatabase.child("questions").child("basic").child("comments").child("first").child("mistakes").setValue(getValue);
+                                                mDatabase.child("users").child(username).child("conceptsProgress").child("mistakes").setValue(getValue);
 
                                                 return;
 
