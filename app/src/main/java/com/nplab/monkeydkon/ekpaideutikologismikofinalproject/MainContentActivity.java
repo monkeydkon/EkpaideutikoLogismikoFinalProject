@@ -18,13 +18,12 @@ import java.util.List;
 
 public class MainContentActivity extends AppCompatActivity {
 
-    ImageView learnBasicConcepts, learnIfAndLoops, learnArrays, learnClassesAndObjects, takeCertificate;
+    ImageView learnBasicConcepts, learnIfAndLoops,learnClassesAndObjects, takeCertificate;
 
     private DatabaseReference mDatabase;
 
     String username;
 
-    Boolean arraysProgress;
     Boolean conceptsProgress;
     Boolean certificateProgress;
     Boolean statementsProgress;
@@ -37,7 +36,6 @@ public class MainContentActivity extends AppCompatActivity {
 
         learnBasicConcepts = findViewById(R.id.learnBasicConcepts);
         learnIfAndLoops = findViewById(R.id.learnIfAndLoops);
-        learnArrays = findViewById(R.id.learnArrays);
         learnClassesAndObjects = findViewById(R.id.learnClassesAndObjects);
         takeCertificate = findViewById(R.id.takeCertificate);
 
@@ -51,7 +49,6 @@ public class MainContentActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 conceptsProgress = (Boolean) dataSnapshot.child("concepts").getValue();
                 statementsProgress = (Boolean) dataSnapshot.child("statements").getValue();
-                arraysProgress = (Boolean) dataSnapshot.child("arrays").getValue();
                 classesProgress = (Boolean) dataSnapshot.child("classes").getValue();
                 certificateProgress = (Boolean) dataSnapshot.child("certificate").getValue();
 
@@ -67,11 +64,6 @@ public class MainContentActivity extends AppCompatActivity {
                     learnIfAndLoops.setImageDrawable(getResources().getDrawable(R.drawable.second_red));
                 }
 
-                if(arraysProgress){
-                    learnArrays.setImageDrawable(getResources().getDrawable(R.drawable.third_green));
-                }else{
-                    learnArrays.setImageDrawable(getResources().getDrawable(R.drawable.third_red));
-                }
 
                 if(classesProgress){
                     learnClassesAndObjects.setImageDrawable(getResources().getDrawable(R.drawable.fourth_green));
@@ -109,19 +101,13 @@ public class MainContentActivity extends AppCompatActivity {
         }
     }
 
-    public void arrays(View view){
+    public void classesAndObjects(View view){
         if(!statementsProgress){
             Toast.makeText(this, "You first have to complete all the previous chapters.", Toast.LENGTH_SHORT).show();
         }else{
-            //todo
-        }
-    }
-
-    public void classesAndObjects(View view){
-        if(!arraysProgress){
-            Toast.makeText(this, "You first have to complete all the previous chapters.", Toast.LENGTH_SHORT).show();
-        }else{
-            //todo
+            Intent intent = new Intent(getApplicationContext(),ClassesActivity.class);
+            intent.putExtra("whoIsLoggedIn", username);
+            startActivity(intent);
         }
     }
 

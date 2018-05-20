@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -86,26 +87,56 @@ public class StatementsActivity extends AppCompatActivity {
     }
     
     public void ifs(View view){
-        // TODO: 16/5/2018  
+        Intent intent = new Intent(getApplicationContext(),StatementsIfsActivity.class);
+        intent.putExtra("whoIsLoggedIn", username);
+        startActivity(intent);
     }
     
     public void elseifs(View view){
-        // TODO: 16/5/2018  
+        if(!ifs){
+            Toast.makeText(this,"You first need to complete all other sections",Toast.LENGTH_SHORT).show();
+        }else{
+            Intent intent = new Intent(getApplicationContext(),StatementsElseIfsActivity.class);
+            intent.putExtra("whoIsLoggedIn", username);
+            startActivity(intent);
+        }
     }
     
     public void switches(View view){
-        // TODO: 16/5/2018  
+        if(!elseifs){
+            Toast.makeText(this,"You first need to complete all other sections",Toast.LENGTH_SHORT).show();
+        }else {
+            Intent intent = new Intent(getApplicationContext(),StatementsSwitchActivity.class);
+            intent.putExtra("whoIsLoggedIn", username);
+            startActivity(intent);
+        }
     }
     
     public void whiles(View view){
-        // TODO: 16/5/2018  
+        if(!switches){
+            Toast.makeText(this,"You first need to complete all other sections",Toast.LENGTH_SHORT).show();
+        }else{
+            Intent intent = new Intent(getApplicationContext(),StatementsWhileActivity.class);
+            intent.putExtra("whoIsLoggedIn", username);
+            startActivity(intent);
+        }
     }
     
     public void fors(View view){
-        // TODO: 16/5/2018
+        if(!whiles){
+            Toast.makeText(this,"You first need to complete all other sections",Toast.LENGTH_SHORT).show();
+        }else{
+            Intent intent = new Intent(getApplicationContext(),StatementsForActivity.class);
+            intent.putExtra("whoIsLoggedIn", username);
+            startActivity(intent);
+        }
     }
     
     public void quiz(View view){
-        // TODO: 16/5/2018  
+        if(!fors){
+            Toast.makeText(this,"You first need to complete all other sections",Toast.LENGTH_SHORT).show();
+        }else{
+            // TODO: 20/5/2018
+        }
     }
 }

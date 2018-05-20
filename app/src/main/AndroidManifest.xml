@@ -38,7 +38,12 @@
         <activity android:name=".ConceptsTestFirstActivity" />
         <activity android:name=".ConceptsTestSecondActivity" />
         <activity android:name=".StatementsActivity" />
-        <activity android:name=".StatementsIfsActivity"></activity>
+        <activity android:name=".StatementsIfsActivity" />
+        <activity android:name=".StatementsElseIfsActivity" />
+        <activity android:name=".StatementsSwitchActivity" />
+        <activity android:name=".StatementsWhileActivity" />
+        <activity android:name=".StatementsForActivity" />
+        <activity android:name=".ClassesActivity"></activity>
     </application>
 
 </manifest>

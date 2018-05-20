@@ -8,7 +8,7 @@ import android.view.View;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class StatementsIfsActivity extends AppCompatActivity {
+public class StatementsWhileActivity extends AppCompatActivity {
 
     String username;
 
@@ -17,7 +17,7 @@ public class StatementsIfsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_statements_ifs);
+        setContentView(R.layout.activity_statements_while);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
@@ -26,11 +26,9 @@ public class StatementsIfsActivity extends AppCompatActivity {
     }
 
     public void done (View view){
-        mDatabase.child("users").child(username).child("ifsProgress").child("if").setValue(true);
+        mDatabase.child("users").child(username).child("ifsProgress").child("while").setValue(true);
         Intent intent = new Intent(getApplicationContext(),StatementsActivity.class);
         intent.putExtra("whoIsLoggedIn", username);
         startActivity(intent);
     }
-
-
 }
