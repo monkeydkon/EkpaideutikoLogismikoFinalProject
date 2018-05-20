@@ -43,7 +43,12 @@
         <activity android:name=".StatementsSwitchActivity" />
         <activity android:name=".StatementsWhileActivity" />
         <activity android:name=".StatementsForActivity" />
-        <activity android:name=".ClassesActivity"></activity>
+        <activity android:name=".ClassesActivity" />
+        <activity android:name=".ClassesOopActivity" />
+        <activity android:name=".ClassesClassesActivity" />
+        <activity android:name=".ClassesMethodsActivity" />
+        <activity android:name=".ClassesMethodReturnTypesActivity" />
+        <activity android:name=".ClassesGettersActivity"></activity>
     </application>
 
 </manifest>
