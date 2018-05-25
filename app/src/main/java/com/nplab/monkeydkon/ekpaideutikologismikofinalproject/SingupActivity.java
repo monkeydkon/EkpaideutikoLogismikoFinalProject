@@ -63,6 +63,30 @@ public class SingupActivity extends AppCompatActivity {
                         mDatabase.child("users").child(username).child("progress").child("arrays").setValue(false);
                         mDatabase.child("users").child(username).child("progress").child("classes").setValue(false);
                         mDatabase.child("users").child(username).child("progress").child("certificate").setValue(false);
+
+                        mDatabase.child("users").child(username).child("classesProgress").child("classes").setValue(false);
+                        mDatabase.child("users").child(username).child("classesProgress").child("getters").setValue(false);
+                        mDatabase.child("users").child(username).child("classesProgress").child("methods").setValue(false);
+                        mDatabase.child("users").child(username).child("classesProgress").child("oop").setValue(false);
+                        mDatabase.child("users").child(username).child("classesProgress").child("quiz").setValue(false);
+                        mDatabase.child("users").child(username).child("classesProgress").child("returnTypes").setValue(false);
+                        mDatabase.child("users").child(username).child("classesProgress").child("mistakes").setValue(0);
+
+                        mDatabase.child("users").child(username).child("conceptsProgress").child("comments").setValue(false);
+                        mDatabase.child("users").child(username).child("conceptsProgress").child("input").setValue(false);
+                        mDatabase.child("users").child(username).child("conceptsProgress").child("intro").setValue(false);
+                        mDatabase.child("users").child(username).child("conceptsProgress").child("quiz").setValue(false);
+                        mDatabase.child("users").child(username).child("conceptsProgress").child("strings").setValue(false);
+                        mDatabase.child("users").child(username).child("conceptsProgress").child("variables").setValue(false);
+                        mDatabase.child("users").child(username).child("conceptsProgress").child("mistakes").setValue(0);
+
+                        mDatabase.child("users").child(username).child("ifsProgress").child("elseif").setValue(false);
+                        mDatabase.child("users").child(username).child("ifsProgress").child("for").setValue(false);
+                        mDatabase.child("users").child(username).child("ifsProgress").child("if").setValue(false);
+                        mDatabase.child("users").child(username).child("ifsProgress").child("quiz").setValue(false);
+                        mDatabase.child("users").child(username).child("ifsProgress").child("switch").setValue(false);
+                        mDatabase.child("users").child(username).child("ifsProgress").child("while").setValue(false);
+                        mDatabase.child("users").child(username).child("ifsProgress").child("mistakes").setValue(0);
                         Toast.makeText(getApplicationContext(),"You successfully signed up",Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                         startActivity(intent);
