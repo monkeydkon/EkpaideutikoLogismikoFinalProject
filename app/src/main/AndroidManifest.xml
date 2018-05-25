@@ -48,7 +48,10 @@
         <activity android:name=".ClassesClassesActivity" />
         <activity android:name=".ClassesMethodsActivity" />
         <activity android:name=".ClassesMethodReturnTypesActivity" />
-        <activity android:name=".ClassesGettersActivity"></activity>
+        <activity android:name=".ClassesGettersActivity" />
+        <activity android:name=".LoginAsProfActivity" />
+        <activity android:name=".ProfActivity" />
+        <activity android:name=".ProfChangeActivity"></activity>
     </application>
 
 </manifest>
