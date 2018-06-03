@@ -51,7 +51,19 @@
         <activity android:name=".ClassesGettersActivity" />
         <activity android:name=".LoginAsProfActivity" />
         <activity android:name=".ProfActivity" />
-        <activity android:name=".ProfChangeActivity"></activity>
+        <activity android:name=".ProfChangeActivity" />
+        <activity android:name=".ConceptsTestThirdActivity" />
+        <activity android:name=".ConceptsTestFourthActivity" />
+        <activity android:name=".ClassesTestFirstActivity" />
+        <activity android:name=".ClassesTestSecondActivity" />
+        <activity android:name=".ClassesTestThirdActivity" />
+        <activity android:name=".ClassesTestFourthActivity" />
+        <activity android:name=".ClassesTestFifthActivity" />
+        <activity android:name=".IfsTestFirstActivity" />
+        <activity android:name=".IfsTestSecondActivity" />
+        <activity android:name=".IfsTestThirdActivity" />
+        <activity android:name=".IfsTestFourthActivity" />
+        <activity android:name=".IfsTestFifthActivity"></activity>
     </application>
 
 </manifest>

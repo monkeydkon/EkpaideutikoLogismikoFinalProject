@@ -136,7 +136,9 @@ public class StatementsActivity extends AppCompatActivity {
         if(!fors){
             Toast.makeText(this,"You first need to complete all other sections",Toast.LENGTH_SHORT).show();
         }else{
-            // TODO: 20/5/2018
+            Intent intent = new Intent(getApplicationContext(),IfsTestFirstActivity.class);
+            intent.putExtra("whoIsLoggedIn", username);
+            startActivity(intent);
         }
     }
 }

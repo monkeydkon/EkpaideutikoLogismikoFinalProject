@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -14,7 +13,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class ConceptsTestSecondActivity extends AppCompatActivity {
+public class IfsTestFifthActivity extends AppCompatActivity {
 
     String username;
 
@@ -32,11 +31,10 @@ public class ConceptsTestSecondActivity extends AppCompatActivity {
 
     int getValue;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_concepts_test_second);
+        setContentView(R.layout.activity_ifs_test_fifth);
 
         Intent intent = getIntent();
         username = intent.getStringExtra("whoIsLoggedIn");
@@ -52,7 +50,7 @@ public class ConceptsTestSecondActivity extends AppCompatActivity {
         radio2 = findViewById(R.id.second);
         radio3 = findViewById(R.id.third);
 
-        mDatabase.child("questions").child("basic").child("input").child("first").addValueEventListener(new ValueEventListener() {
+        mDatabase.child("questions").child("ifs").child("while").child("first").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 question.setText(dataSnapshot.child("question").getValue().toString());
@@ -66,8 +64,8 @@ public class ConceptsTestSecondActivity extends AppCompatActivity {
 
             }
         });
-
-        mDatabase.child("users").child(username).child("conceptsProgress").child("mistakes").addListenerForSingleValueEvent(new ValueEventListener() {
+        
+        mDatabase.child("users").child(username).child("ifsProgress").child("mistakes").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -90,12 +88,12 @@ public class ConceptsTestSecondActivity extends AppCompatActivity {
 
                 switch (checkedId){
                     case R.id.first:
-                        mDatabase.child("questions").child("basic").child("input").child("first").child("answers").child("correct").addValueEventListener(new ValueEventListener() {
+                        mDatabase.child("questions").child("ifs").child("while").child("first").child("answers").child("correct").addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 1){
                                     getValue++;
-                                    mDatabase.child("users").child(username).child("conceptsProgress").child("mistakes").setValue(getValue);
+                                    mDatabase.child("users").child(username).child("ifsProgress").child("mistakes").setValue(getValue);
 
                                     //check();
                                 }
@@ -110,12 +108,12 @@ public class ConceptsTestSecondActivity extends AppCompatActivity {
                         break;
 
                     case R.id.second:
-                        mDatabase.child("questions").child("basic").child("input").child("first").child("answers").child("correct").addValueEventListener(new ValueEventListener() {
+                        mDatabase.child("questions").child("ifs").child("while").child("first").child("answers").child("correct").addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 2){
                                     getValue++;
-                                    mDatabase.child("users").child(username).child("conceptsProgress").child("mistakes").setValue(getValue);
+                                    mDatabase.child("users").child(username).child("ifsProgress").child("mistakes").setValue(getValue);
 
                                     //check();
                                 }
@@ -129,14 +127,14 @@ public class ConceptsTestSecondActivity extends AppCompatActivity {
 
                         break;
                     case R.id.third:
-                        mDatabase.child("questions").child("basic").child("input").child("first").child("answers").child("correct").addValueEventListener(new ValueEventListener() {
+                        mDatabase.child("questions").child("ifs").child("while").child("first").child("answers").child("correct").addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 3){
                                     getValue++;
-                                    mDatabase.child("users").child(username).child("conceptsProgress").child("mistakes").setValue(getValue);
+                                    mDatabase.child("users").child(username).child("ifsProgress").child("mistakes").setValue(getValue);
 
-                                   // check();
+                                    // check();
                                 }
                             }
 
@@ -148,42 +146,14 @@ public class ConceptsTestSecondActivity extends AppCompatActivity {
 
                         break;
                 }
+//                Intent intent = new Intent(getApplicationContext(),IfsTestFifthActivity.class);
+//                intent.putExtra("whoIsLoggedIn", username);
+//                startActivity(intent);
 
 
-
-                goToThird();
+                // TODO: 3/6/2018
             }
 
         });
-
-
-
-
     }
-
-    public void goToThird(){
-        Intent intent = new Intent(getApplicationContext(),ConceptsTestThirdActivity.class);
-        intent.putExtra("whoIsLoggedIn", username);
-        startActivity(intent);
-    }
-
-//    public void check(){
-//        if(getValue > 1){
-//            mDatabase.child("users").child(username).child("conceptsProgress").child("mistakes").setValue(0);
-//            Toast.makeText(getApplicationContext(),"You made 1 mistake out of 2 questions. Try again!",Toast.LENGTH_SHORT).show();
-//            Intent intent = new Intent(getApplicationContext(),BasicConceptsActivity.class);
-//            intent.putExtra("whoIsLoggedIn", username);
-//            startActivity(intent);
-//        }else{
-//
-//            mDatabase.child("users").child(username).child("conceptsProgress").child("quiz").setValue(true);
-//            mDatabase.child("users").child(username).child("progress").child("concepts").setValue(true);
-//            Intent intent = new Intent(getApplicationContext(),MainContentActivity.class);
-//            intent.putExtra("whoIsLoggedIn", username);
-//            startActivity(intent);
-//            Toast.makeText(getApplicationContext(),"You completed the second chapter. Congratulations",Toast.LENGTH_SHORT).show();
-//        }
-//    }
-
-
 }
