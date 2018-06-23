@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -150,10 +151,110 @@ public class ClassesTestFifthActivity extends AppCompatActivity {
 //                intent.putExtra("whoIsLoggedIn", username);
 //                startActivity(intent);
 
-                // TODO: 3/6/2018
+                if((getValue) > 2){
+                    mDatabase.child("users").child(username).child("classesProgress").child("mistakes").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            mDatabase.child("users").child(username).child("classesProgress").child("mistakes").setValue(0);
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+                    Toast.makeText(getApplicationContext(),"You failed the test. Study better and try again!",Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getApplicationContext(),MainContentActivity.class);
+                    intent.putExtra("whoIsLoggedIn", username);
+                    startActivity(intent);
+                }else if((getValue) >= 1){
+                    mDatabase.child("users").child(username).child("progress").child("classes").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            mDatabase.child("users").child(username).child("progress").child("classes").setValue(true);
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+                    mDatabase.child("users").child(username).child("classesProgress").child("quiz").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            mDatabase.child("users").child(username).child("classesProgress").child("quiz").setValue(true);
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+                    mDatabase.child("users").child(username).child("classesProgress").child("pososto").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            mDatabase.child("users").child(username).child("classesProgress").child("pososto").setValue(((5-getValue)*100)/5);
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+
+                    Toast.makeText(getApplicationContext(),"You passed the test",Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getApplicationContext(),MainContentActivity.class);
+                    intent.putExtra("whoIsLoggedIn", username);
+                    startActivity(intent);
+
+                }else if (getValue == 0){
+                    mDatabase.child("users").child(username).child("progress").child("classes").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            mDatabase.child("users").child(username).child("progress").child("classes").setValue(true);
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+                    mDatabase.child("users").child(username).child("classesProgress").child("quiz").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            mDatabase.child("users").child(username).child("classesProgress").child("quiz").setValue(true);
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+                    mDatabase.child("users").child(username).child("classesProgress").child("pososto").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            mDatabase.child("users").child(username).child("classesProgress").child("pososto").setValue(((5-getValue)*100)/5);
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+
+                    Toast.makeText(getApplicationContext(),"You passed the test",Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getApplicationContext(),MainContentActivity.class);
+                    intent.putExtra("whoIsLoggedIn", username);
+                    startActivity(intent);
+                }
 
             }
 
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(this,"You first have to finish the test",Toast.LENGTH_SHORT).show();
     }
 }

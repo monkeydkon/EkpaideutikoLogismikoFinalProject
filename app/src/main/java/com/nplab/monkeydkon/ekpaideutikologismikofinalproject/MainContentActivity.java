@@ -18,7 +18,7 @@ import java.util.List;
 
 public class MainContentActivity extends AppCompatActivity {
 
-    ImageView learnBasicConcepts, learnIfAndLoops,learnClassesAndObjects, takeCertificate;
+    ImageView learnBasicConcepts, learnIfAndLoops,learnClassesAndObjects, takeCertificate, info;
 
     private DatabaseReference mDatabase;
 
@@ -29,6 +29,10 @@ public class MainContentActivity extends AppCompatActivity {
     Boolean statementsProgress;
     Boolean classesProgress;
 
+    Boolean allPerfect;
+
+    int classesPososto,conceptsPososto,ifsPososto;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +42,8 @@ public class MainContentActivity extends AppCompatActivity {
         learnIfAndLoops = findViewById(R.id.learnIfAndLoops);
         learnClassesAndObjects = findViewById(R.id.learnClassesAndObjects);
         takeCertificate = findViewById(R.id.takeCertificate);
+
+        info = findViewById(R.id.info);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
@@ -83,7 +89,78 @@ public class MainContentActivity extends AppCompatActivity {
 
             }
         });
+
+        mDatabase.child("users").child(username).child("classesProgress").child("pososto").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.getValue().toString().equals("100")){
+                    classesPososto=100;
+
+                }else{
+                    classesPososto = Integer.parseInt(dataSnapshot.getValue().toString());
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        mDatabase.child("users").child(username).child("ifsProgress").child("pososto").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.getValue().toString().equals("100")){
+                    ifsPososto=100;
+
+                }else{
+                    ifsPososto = Integer.parseInt(dataSnapshot.getValue().toString());
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        mDatabase.child("users").child(username).child("conceptsProgress").child("pososto").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.getValue().toString().equals("100")){
+                    conceptsPososto = 100;
+                }else{
+                    conceptsPososto = Integer.parseInt(dataSnapshot.getValue().toString());
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseErroHEllr) {
+
+            }
+        });
+
+        if(ifsPososto==100 && conceptsPososto==100 && classesPososto==100){
+            info.setImageDrawable(getResources().getDrawable(R.drawable.info_black));
+            allPerfect=true;
+        }else{
+            info.setImageDrawable(getResources().getDrawable(R.drawable.info_red));
+            allPerfect=false;
+        }
+
     }
+
+    public void openInfo(View view){
+        Intent intent = new Intent(getApplicationContext(),InfoActivity.class);
+        intent.putExtra("whoIsLoggedIn", username);
+        startActivity(intent);
+    }
+
+
 
     public void basicConcepts(View view){
         Intent intent = new Intent(getApplicationContext(),BasicConceptsActivity.class);

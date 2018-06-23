@@ -157,7 +157,6 @@ public class ClassesTestSecondActivity extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         Toast.makeText(this,"You first have to finish the test",Toast.LENGTH_SHORT).show();
     }
 }

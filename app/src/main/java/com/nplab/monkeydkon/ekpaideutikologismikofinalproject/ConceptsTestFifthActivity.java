@@ -162,7 +162,7 @@ public class ConceptsTestFifthActivity extends AppCompatActivity {
                         }
                     });
                     Toast.makeText(getApplicationContext(),"You failed the test. Study better and try again!",Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                    Intent intent = new Intent(getApplicationContext(),MainContentActivity.class);
                     intent.putExtra("whoIsLoggedIn", username);
                     startActivity(intent);
                 }else if((getValue) >= 1){
@@ -201,7 +201,7 @@ public class ConceptsTestFifthActivity extends AppCompatActivity {
                     });
 
                     Toast.makeText(getApplicationContext(),"You passed the",Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                    Intent intent = new Intent(getApplicationContext(),MainContentActivity.class);
                     intent.putExtra("whoIsLoggedIn", username);
                     startActivity(intent);
 
@@ -241,7 +241,7 @@ public class ConceptsTestFifthActivity extends AppCompatActivity {
                     });
 
                     Toast.makeText(getApplicationContext(),"You passed the test",Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                    Intent intent = new Intent(getApplicationContext(),MainContentActivity.class);
                     intent.putExtra("whoIsLoggedIn", username);
                     startActivity(intent);
                 }
@@ -253,7 +253,6 @@ public class ConceptsTestFifthActivity extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         Toast.makeText(this,"You first have to finish the test",Toast.LENGTH_SHORT).show();
     }
 
