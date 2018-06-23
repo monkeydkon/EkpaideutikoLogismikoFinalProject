@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -153,5 +154,11 @@ public class ConceptsTestFirstActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(),ConceptsTestSecondActivity.class);
         intent.putExtra("whoIsLoggedIn", username);
         startActivity(intent);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Toast.makeText(this,"You first have to finish the test",Toast.LENGTH_SHORT).show();
     }
 }
