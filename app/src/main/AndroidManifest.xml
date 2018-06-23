@@ -63,7 +63,8 @@
         <activity android:name=".IfsTestSecondActivity" />
         <activity android:name=".IfsTestThirdActivity" />
         <activity android:name=".IfsTestFourthActivity" />
-        <activity android:name=".IfsTestFifthActivity"></activity>
+        <activity android:name=".IfsTestFifthActivity" />
+        <activity android:name=".ConceptsTestFifthActivity"></activity>
     </application>
 
 </manifest>
