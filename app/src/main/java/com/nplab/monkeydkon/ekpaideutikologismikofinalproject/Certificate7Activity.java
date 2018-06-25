@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -14,7 +13,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class IfsTestFirstActivity extends AppCompatActivity {
+public class Certificate7Activity extends AppCompatActivity {
 
     String username;
 
@@ -35,7 +34,7 @@ public class IfsTestFirstActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ifs_test_first);
+        setContentView(R.layout.activity_certificate7);
 
         Intent intent = getIntent();
         username = intent.getStringExtra("whoIsLoggedIn");
@@ -51,10 +50,7 @@ public class IfsTestFirstActivity extends AppCompatActivity {
         radio2 = findViewById(R.id.second);
         radio3 = findViewById(R.id.third);
 
-        mDatabase.child("users").child(username).child("ifsProgress").child("mistakes").setValue(0);
-        mDatabase.child("users").child(username).child("ifsProgress").child("pososto").setValue(0);
-
-        mDatabase.child("questions").child("ifs").child("if").child("first").addValueEventListener(new ValueEventListener() {
+        mDatabase.child("questions").child("classes").child("getters").child("second").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 question.setText(dataSnapshot.child("question").getValue().toString());
@@ -69,7 +65,7 @@ public class IfsTestFirstActivity extends AppCompatActivity {
             }
         });
 
-        mDatabase.child("users").child(username).child("ifsProgress").child("mistakes").addListenerForSingleValueEvent(new ValueEventListener() {
+        mDatabase.child("users").child(username).child("certificateProgress").child("mistakes").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -92,14 +88,12 @@ public class IfsTestFirstActivity extends AppCompatActivity {
 
                 switch (checkedId){
                     case R.id.first:
-                        mDatabase.child("questions").child("ifs").child("if").child("first").child("answers").child("correct").addValueEventListener(new ValueEventListener() {
+                        mDatabase.child("questions").child("classes").child("getters").child("second").child("answers").child("correct").addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 1){
                                     getValue++;
-                                    mDatabase.child("users").child(username).child("ifsProgress").child("mistakes").setValue(getValue);
-
-                                    //check();
+                                    mDatabase.child("users").child(username).child("certificateProgress").child("mistakes").setValue(getValue);
                                 }
                             }
 
@@ -112,14 +106,12 @@ public class IfsTestFirstActivity extends AppCompatActivity {
                         break;
 
                     case R.id.second:
-                        mDatabase.child("questions").child("ifs").child("if").child("first").child("answers").child("correct").addValueEventListener(new ValueEventListener() {
+                        mDatabase.child("questions").child("classes").child("getters").child("second").child("answers").child("correct").addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 2){
                                     getValue++;
-                                    mDatabase.child("users").child(username).child("ifsProgress").child("mistakes").setValue(getValue);
-
-                                    //check();
+                                    mDatabase.child("users").child(username).child("certificateProgress").child("mistakes").setValue(getValue);
                                 }
                             }
 
@@ -131,14 +123,12 @@ public class IfsTestFirstActivity extends AppCompatActivity {
 
                         break;
                     case R.id.third:
-                        mDatabase.child("questions").child("ifs").child("if").child("first").child("answers").child("correct").addValueEventListener(new ValueEventListener() {
+                        mDatabase.child("questions").child("classes").child("getters").child("second").child("answers").child("correct").addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 3){
                                     getValue++;
-                                    mDatabase.child("users").child(username).child("ifsProgress").child("mistakes").setValue(getValue);
-
-                                    // check();
+                                    mDatabase.child("users").child(username).child("certificateProgress").child("mistakes").setValue(getValue);
                                 }
                             }
 
@@ -150,17 +140,14 @@ public class IfsTestFirstActivity extends AppCompatActivity {
 
                         break;
                 }
-                Intent intent = new Intent(getApplicationContext(),IfsTestSecondActivity.class);
+
+                Intent intent = new Intent(getApplicationContext(), Certificate8Activity.class);
                 intent.putExtra("whoIsLoggedIn", username);
                 startActivity(intent);
 
             }
-
         });
-    }
 
-    @Override
-    public void onBackPressed() {
-        Toast.makeText(this,"You first have to finish the test",Toast.LENGTH_SHORT).show();
+
     }
 }

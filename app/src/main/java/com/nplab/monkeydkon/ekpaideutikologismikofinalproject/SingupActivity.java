@@ -64,6 +64,8 @@ public class SingupActivity extends AppCompatActivity {
                         mDatabase.child("users").child(username).child("progress").child("classes").setValue(false);
                         mDatabase.child("users").child(username).child("progress").child("certificate").setValue(false);
 
+                        mDatabase.child("users").child(username).child("certificateProgress").child("mistakes").setValue(0);
+
                         mDatabase.child("users").child(username).child("classesProgress").child("classes").setValue(false);
                         mDatabase.child("users").child(username).child("classesProgress").child("getters").setValue(false);
                         mDatabase.child("users").child(username).child("classesProgress").child("methods").setValue(false);

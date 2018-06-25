@@ -65,7 +65,23 @@
         <activity android:name=".IfsTestFourthActivity" />
         <activity android:name=".IfsTestFifthActivity" />
         <activity android:name=".ConceptsTestFifthActivity" />
-        <activity android:name=".InfoActivity"></activity>
+        <activity android:name=".InfoActivity" />
+        <activity android:name=".CertificateActivity" />
+        <activity android:name=".Certificate2Activity" />
+        <activity android:name=".Certificate3Activity" />
+        <activity android:name=".Certificate4Activity" />
+        <activity android:name=".Certificate5Activity" />
+        <activity android:name=".Certificate6Activity" />
+        <activity android:name=".Certificate8Activity" />
+        <activity android:name=".Certificate7Activity" />
+        <activity android:name=".Certificate9Activity" />
+        <activity android:name=".Certificate10Activity" />
+        <activity android:name=".Certificate11Activity" />
+        <activity android:name=".Certificate12Activity" />
+        <activity android:name=".Certificate13Activity" />
+        <activity android:name=".Certificate14Activity" />
+        <activity android:name=".Certificate15Activity" />
+        <activity android:name=".Certificate16Activity"></activity>
     </application>
 
 </manifest>
