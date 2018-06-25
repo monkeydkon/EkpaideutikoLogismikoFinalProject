@@ -14,7 +14,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class Certificate9Activity extends AppCompatActivity {
+public class ClassesSecondTestThirdActivity extends AppCompatActivity {
 
     String username;
 
@@ -35,7 +35,7 @@ public class Certificate9Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_certificate9);
+        setContentView(R.layout.activity_classes_second_test_third);
 
         Intent intent = getIntent();
         username = intent.getStringExtra("whoIsLoggedIn");
@@ -51,7 +51,7 @@ public class Certificate9Activity extends AppCompatActivity {
         radio2 = findViewById(R.id.second);
         radio3 = findViewById(R.id.third);
 
-        mDatabase.child("questions").child("classes").child("oop").child("second").addValueEventListener(new ValueEventListener() {
+        mDatabase.child("questions").child("classes").child("methods").child("second").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 question.setText(dataSnapshot.child("question").getValue().toString());
@@ -66,7 +66,7 @@ public class Certificate9Activity extends AppCompatActivity {
             }
         });
 
-        mDatabase.child("users").child(username).child("certificateProgress").child("mistakes").addListenerForSingleValueEvent(new ValueEventListener() {
+        mDatabase.child("users").child(username).child("classesProgress").child("mistakes").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -89,12 +89,14 @@ public class Certificate9Activity extends AppCompatActivity {
 
                 switch (checkedId){
                     case R.id.first:
-                        mDatabase.child("questions").child("classes").child("oop").child("second").child("answers").child("correct").addValueEventListener(new ValueEventListener() {
+                        mDatabase.child("questions").child("classes").child("methods").child("second").child("answers").child("correct").addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 1){
                                     getValue++;
-                                    mDatabase.child("users").child(username).child("certificateProgress").child("mistakes").setValue(getValue);
+                                    mDatabase.child("users").child(username).child("ifsProgress").child("mistakes").setValue(getValue);
+
+                                    //check();
                                 }
                             }
 
@@ -107,12 +109,14 @@ public class Certificate9Activity extends AppCompatActivity {
                         break;
 
                     case R.id.second:
-                        mDatabase.child("questions").child("classes").child("oop").child("second").child("answers").child("correct").addValueEventListener(new ValueEventListener() {
+                        mDatabase.child("questions").child("classes").child("methods").child("second").child("answers").child("correct").addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 2){
                                     getValue++;
-                                    mDatabase.child("users").child(username).child("certificateProgress").child("mistakes").setValue(getValue);
+                                    mDatabase.child("users").child(username).child("ifsProgress").child("mistakes").setValue(getValue);
+
+                                    //check();
                                 }
                             }
 
@@ -124,12 +128,14 @@ public class Certificate9Activity extends AppCompatActivity {
 
                         break;
                     case R.id.third:
-                        mDatabase.child("questions").child("classes").child("oop").child("second").child("answers").child("correct").addValueEventListener(new ValueEventListener() {
+                        mDatabase.child("questions").child("classes").child("methods").child("second").child("answers").child("correct").addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 3){
                                     getValue++;
-                                    mDatabase.child("users").child(username).child("certificateProgress").child("mistakes").setValue(getValue);
+                                    mDatabase.child("users").child(username).child("ifsProgress").child("mistakes").setValue(getValue);
+
+                                    // check();
                                 }
                             }
 
@@ -141,14 +147,13 @@ public class Certificate9Activity extends AppCompatActivity {
 
                         break;
                 }
-
-                Intent intent = new Intent(getApplicationContext(), Certificate10Activity.class);
+                Intent intent = new Intent(getApplicationContext(),ClassesSecondTestFourthActivity.class);
                 intent.putExtra("whoIsLoggedIn", username);
                 startActivity(intent);
 
             }
-        });
 
+        });
     }
 
     @Override

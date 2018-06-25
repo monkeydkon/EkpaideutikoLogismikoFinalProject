@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -148,5 +149,10 @@ public class Certificate13Activity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(this,"You first have to finish the test",Toast.LENGTH_SHORT).show();
     }
 }

@@ -81,7 +81,22 @@
         <activity android:name=".Certificate13Activity" />
         <activity android:name=".Certificate14Activity" />
         <activity android:name=".Certificate15Activity" />
-        <activity android:name=".Certificate16Activity"></activity>
+        <activity android:name=".Certificate16Activity" />
+        <activity android:name=".ConceptsSecondTestFirstActivity" />
+        <activity android:name=".ConceptsSecondTestSecondActivity" />
+        <activity android:name=".ConceptsSecondTestThirdActivity" />
+        <activity android:name=".ConceptsSecondTestFourthActivity" />
+        <activity android:name=".ConceptsSecondTestFifthActivity" />
+        <activity android:name=".IfsSecondTestFirstActivity" />
+        <activity android:name=".IfsSecondTestSecondActivity" />
+        <activity android:name=".IfsSecondTestThirdActivity" />
+        <activity android:name=".IfsSecondTestFourthActivity" />
+        <activity android:name=".IfsSecondTestFifthActivity" />
+        <activity android:name=".ClassesSecondTestFirstActivity" />
+        <activity android:name=".ClassesSecondTestSecondActivity" />
+        <activity android:name=".ClassesSecondTestThirdActivity" />
+        <activity android:name=".ClassesSecondTestFourthActivity" />
+        <activity android:name=".ClassesSecondTestFifthActivity"></activity>
     </application>
 
 </manifest>

@@ -14,7 +14,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class Certificate15Activity extends AppCompatActivity {
+public class IfsSecondTestFifthActivity extends AppCompatActivity {
 
     String username;
 
@@ -35,7 +35,7 @@ public class Certificate15Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_certificate15);
+        setContentView(R.layout.activity_ifs_second_test_fifth);
 
         Intent intent = getIntent();
         username = intent.getStringExtra("whoIsLoggedIn");
@@ -66,7 +66,7 @@ public class Certificate15Activity extends AppCompatActivity {
             }
         });
 
-        mDatabase.child("users").child(username).child("certificateProgress").child("mistakes").addListenerForSingleValueEvent(new ValueEventListener() {
+        mDatabase.child("users").child(username).child("ifsProgress").child("mistakes").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -94,7 +94,9 @@ public class Certificate15Activity extends AppCompatActivity {
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 1){
                                     getValue++;
-                                    mDatabase.child("users").child(username).child("certificateProgress").child("mistakes").setValue(getValue);
+                                    mDatabase.child("users").child(username).child("ifsProgress").child("mistakes").setValue(getValue);
+
+                                    //check();
                                 }
                             }
 
@@ -112,7 +114,9 @@ public class Certificate15Activity extends AppCompatActivity {
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 2){
                                     getValue++;
-                                    mDatabase.child("users").child(username).child("certificateProgress").child("mistakes").setValue(getValue);
+                                    mDatabase.child("users").child(username).child("ifsProgress").child("mistakes").setValue(getValue);
+
+                                    //check();
                                 }
                             }
 
@@ -129,7 +133,9 @@ public class Certificate15Activity extends AppCompatActivity {
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 3){
                                     getValue++;
-                                    mDatabase.child("users").child(username).child("certificateProgress").child("mistakes").setValue(getValue);
+                                    mDatabase.child("users").child(username).child("ifsProgress").child("mistakes").setValue(getValue);
+
+                                    // check();
                                 }
                             }
 
@@ -143,10 +149,10 @@ public class Certificate15Activity extends AppCompatActivity {
                 }
 
                 if((getValue) > 2){
-                    mDatabase.child("users").child(username).child("certificateProgress").child("mistakes").addListenerForSingleValueEvent(new ValueEventListener() {
+                    mDatabase.child("users").child(username).child("ifsProgress").child("mistakes").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            mDatabase.child("users").child(username).child("certificateProgress").child("mistakes").setValue(0);
+                            mDatabase.child("users").child(username).child("ifsProgress").child("mistakes").setValue(0);
                         }
 
                         @Override
@@ -158,15 +164,89 @@ public class Certificate15Activity extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(),MainContentActivity.class);
                     intent.putExtra("whoIsLoggedIn", username);
                     startActivity(intent);
-                }else{
-                    mDatabase.child("users").child(username).child("progress").child("certificate").setValue(true);
+                }else if((getValue) >= 1){
+                    mDatabase.child("users").child(username).child("progress").child("statements").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            mDatabase.child("users").child(username).child("progress").child("statements").setValue(true);
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+                    mDatabase.child("users").child(username).child("ifsProgress").child("quiz").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            mDatabase.child("users").child(username).child("ifsProgress").child("quiz").setValue(true);
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+                    mDatabase.child("users").child(username).child("ifsProgress").child("pososto").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            mDatabase.child("users").child(username).child("ifsProgress").child("pososto").setValue(((5-getValue)*100)/5);
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+
+                    Toast.makeText(getApplicationContext(),"You passed the",Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(getApplicationContext(),MainContentActivity.class);
                     intent.putExtra("whoIsLoggedIn", username);
                     startActivity(intent);
-                    Toast.makeText(getApplicationContext(),"Congratulations! You now are ready to be a real developer!",Toast.LENGTH_LONG).show();
 
+                }else if (getValue == 0){
+                    mDatabase.child("users").child(username).child("progress").child("statements").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            mDatabase.child("users").child(username).child("progress").child("statements").setValue(true);
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+                    mDatabase.child("users").child(username).child("ifsProgress").child("quiz").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            mDatabase.child("users").child(username).child("ifsProgress").child("quiz").setValue(true);
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+                    mDatabase.child("users").child(username).child("ifsProgress").child("pososto").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            mDatabase.child("users").child(username).child("ifsProgress").child("pososto").setValue(((5-getValue)*100)/5);
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+
+                    Toast.makeText(getApplicationContext(),"You passed the test",Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getApplicationContext(),MainContentActivity.class);
+                    intent.putExtra("whoIsLoggedIn", username);
+                    startActivity(intent);
                 }
+
             }
+
         });
     }
 
@@ -174,4 +254,5 @@ public class Certificate15Activity extends AppCompatActivity {
     public void onBackPressed() {
         Toast.makeText(this,"You first have to finish the test",Toast.LENGTH_SHORT).show();
     }
+
 }

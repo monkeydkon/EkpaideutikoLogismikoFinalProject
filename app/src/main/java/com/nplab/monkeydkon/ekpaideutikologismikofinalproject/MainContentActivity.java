@@ -284,15 +284,15 @@ public class MainContentActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 if (where == 0){
-                    Intent intent = new Intent(getApplicationContext(),BasicConceptsActivity.class);
+                    Intent intent = new Intent(getApplicationContext(),ConceptsSecondTestFirstActivity.class);
                     intent.putExtra("whoIsLoggedIn", username);
                     startActivity(intent);
                 }else if(where == 1){
-                    Intent intent = new Intent(getApplicationContext(),StatementsActivity.class);
+                    Intent intent = new Intent(getApplicationContext(),IfsSecondTestFirstActivity.class);
                     intent.putExtra("whoIsLoggedIn", username);
                     startActivity(intent);
                 }else if(where == 2){
-                    Intent intent = new Intent(getApplicationContext(),ClassesActivity.class);
+                    Intent intent = new Intent(getApplicationContext(),ClassesSecondTestFirstActivity.class);
                     intent.putExtra("whoIsLoggedIn", username);
                     startActivity(intent);
                 }
