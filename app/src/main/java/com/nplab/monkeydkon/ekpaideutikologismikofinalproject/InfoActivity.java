@@ -24,7 +24,9 @@ public class InfoActivity extends AppCompatActivity {
     boolean commentsfalse,inputfalse,introfalse,stringfalse,variablefalse; //booleans
     boolean iffalse,elseiffalse,switchfalse,whilefalse,forfalse;
     boolean oopfalse,classesfalse,methodsfalse,returntypesfalse,gettersfalse;
-    TextView textViewClasses, textViewClassesPososto, textViewStatements, textViewStatementsPososto, textViewConcepts, textViewConceptsPososto;
+    TextView textViewClasses, textViewClassesPososto, textViewStatements, textViewStatementsPososto, textViewConcepts, textViewConceptsPososto, introEpi,inputEpi,commentsEpi,stringsEpi,variablesEpi;
+    TextView ifEpi,elseifEpi,forEpi,switchEpi,whileEpi;
+    TextView classesEpi,gettersEpi,methodsEpi,oopEpi,returnEpi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,54 @@ public class InfoActivity extends AppCompatActivity {
         textViewClassesPososto = findViewById(R.id.textViewClassesPososto);
         textViewConceptsPososto = findViewById(R.id.textViewConceptsPososto);
         textViewStatementsPososto = findViewById(R.id.textViewStatementsPososto);
+
+        introEpi = findViewById(R.id.introEpi);
+        inputEpi = findViewById(R.id.inputEpi);
+        variablesEpi = findViewById(R.id.variablesEpi);
+        commentsEpi = findViewById(R.id.commentsEpi);
+        stringsEpi = findViewById(R.id.stringsEpi);
+
+        ifEpi = findViewById(R.id.ifEpi);
+        elseifEpi = findViewById(R.id.elseifEpi);
+        forEpi = findViewById(R.id.forEpi);
+        switchEpi = findViewById(R.id.switchEpi);
+        whileEpi = findViewById(R.id.whileEpi);
+
+        classesEpi = findViewById(R.id.classesEpi);
+        gettersEpi = findViewById(R.id.gettersEpi);
+        methodsEpi = findViewById(R.id.methodsEpi);
+        oopEpi = findViewById(R.id.oopEpi);
+        returnEpi = findViewById(R.id.returnEpi);
+
+        mDatabase.child("users").child(username).child("visited").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                introEpi.setText(dataSnapshot.child("concepts").child("intro").getValue().toString());
+                inputEpi.setText(dataSnapshot.child("concepts").child("input").getValue().toString());
+                variablesEpi.setText(dataSnapshot.child("concepts").child("variables").getValue().toString());
+                commentsEpi.setText(dataSnapshot.child("concepts").child("comments").getValue().toString());
+                stringsEpi.setText(dataSnapshot.child("concepts").child("strings").getValue().toString());
+
+                ifEpi.setText(dataSnapshot.child("statements").child("if").getValue().toString());
+                elseifEpi.setText(dataSnapshot.child("statements").child("elseif").getValue().toString());
+                forEpi.setText(dataSnapshot.child("statements").child("for").getValue().toString());
+                whileEpi.setText(dataSnapshot.child("statements").child("while").getValue().toString());
+                switchEpi.setText(dataSnapshot.child("statements").child("switch").getValue().toString());
+
+                classesEpi.setText(dataSnapshot.child("classes").child("classes").getValue().toString());
+                gettersEpi.setText(dataSnapshot.child("classes").child("getters").getValue().toString());
+                methodsEpi.setText(dataSnapshot.child("classes").child("methods").getValue().toString());
+                oopEpi.setText(dataSnapshot.child("classes").child("oop").getValue().toString());
+                returnEpi.setText(dataSnapshot.child("classes").child("return").getValue().toString());
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
         //For 1ST CHAPTER
         mDatabase.child("users").child(username).child("conceptsProgress").child("commentsfalse").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

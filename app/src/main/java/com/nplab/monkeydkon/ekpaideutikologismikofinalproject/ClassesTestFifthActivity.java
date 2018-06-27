@@ -226,7 +226,7 @@ public class ClassesTestFifthActivity extends AppCompatActivity {
                         }
                     });
 
-                    Toast.makeText(getApplicationContext(),"You pvhgvhgvghjassed the test"+String.valueOf(getValue),Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"You passed the test"+String.valueOf(getValue),Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(getApplicationContext(),MainContentActivity.class);
                     intent.putExtra("whoIsLoggedIn", username);
                     startActivity(intent);

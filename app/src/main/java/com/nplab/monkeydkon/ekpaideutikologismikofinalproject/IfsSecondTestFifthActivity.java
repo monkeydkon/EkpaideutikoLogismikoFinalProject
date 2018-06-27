@@ -201,7 +201,7 @@ public class IfsSecondTestFifthActivity extends AppCompatActivity {
                         }
                     });
 
-                    Toast.makeText(getApplicationContext(),"You passed the",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"You passed the test",Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(getApplicationContext(),MainContentActivity.class);
                     intent.putExtra("whoIsLoggedIn", username);
                     startActivity(intent);

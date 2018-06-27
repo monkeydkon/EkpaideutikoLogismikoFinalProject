@@ -49,7 +49,7 @@ public class LoginAsProfActivity extends AppCompatActivity {
 
                                     Toast.makeText(getApplicationContext(),"You are now logged in.",Toast.LENGTH_SHORT).show();
 
-                                    startActivity(new Intent(LoginAsProfActivity.this, ProfActivity.class));
+                                    startActivity(new Intent(LoginAsProfActivity.this, FirstProfActivity.class));
 
                                 }else{
                                     Toast.makeText(getApplicationContext(),"Wrong password. Try again.",Toast.LENGTH_SHORT).show();

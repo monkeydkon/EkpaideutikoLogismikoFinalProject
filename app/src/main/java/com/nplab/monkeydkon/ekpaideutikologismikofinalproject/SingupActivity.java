@@ -71,6 +71,13 @@ public class SingupActivity extends AppCompatActivity {
                         mDatabase.child("users").child(username).child("classesProgress").child("oop").setValue(false);
                         mDatabase.child("users").child(username).child("classesProgress").child("quiz").setValue(false);
                         mDatabase.child("users").child(username).child("classesProgress").child("returnTypes").setValue(false);
+
+                        mDatabase.child("users").child(username).child("classesProgress").child("classesfalse").setValue(false);
+                        mDatabase.child("users").child(username).child("classesProgress").child("gettersfalse").setValue(false);
+                        mDatabase.child("users").child(username).child("classesProgress").child("methodsfalse").setValue(false);
+                        mDatabase.child("users").child(username).child("classesProgress").child("oopfalse").setValue(false);
+                        mDatabase.child("users").child(username).child("classesProgress").child("returntypesfalse").setValue(false);
+
                         mDatabase.child("users").child(username).child("classesProgress").child("mistakes").setValue(0);
                         mDatabase.child("users").child(username).child("classesProgress").child("pososto").setValue(0);
 
@@ -80,6 +87,13 @@ public class SingupActivity extends AppCompatActivity {
                         mDatabase.child("users").child(username).child("conceptsProgress").child("quiz").setValue(false);
                         mDatabase.child("users").child(username).child("conceptsProgress").child("strings").setValue(false);
                         mDatabase.child("users").child(username).child("conceptsProgress").child("variables").setValue(false);
+
+                        mDatabase.child("users").child(username).child("conceptsProgress").child("commentsfalse").setValue(false);
+                        mDatabase.child("users").child(username).child("conceptsProgress").child("inputfalse").setValue(false);
+                        mDatabase.child("users").child(username).child("conceptsProgress").child("introfalse").setValue(false);
+                        mDatabase.child("users").child(username).child("conceptsProgress").child("stringfalse").setValue(false);
+                        mDatabase.child("users").child(username).child("conceptsProgress").child("variablesfalse").setValue(false);
+
                         mDatabase.child("users").child(username).child("conceptsProgress").child("mistakes").setValue(0);
                         mDatabase.child("users").child(username).child("conceptsProgress").child("pososto").setValue(0);
 
@@ -89,8 +103,34 @@ public class SingupActivity extends AppCompatActivity {
                         mDatabase.child("users").child(username).child("ifsProgress").child("quiz").setValue(false);
                         mDatabase.child("users").child(username).child("ifsProgress").child("switch").setValue(false);
                         mDatabase.child("users").child(username).child("ifsProgress").child("while").setValue(false);
+
+                        mDatabase.child("users").child(username).child("ifsProgress").child("elseiffalse").setValue(false);
+                        mDatabase.child("users").child(username).child("ifsProgress").child("forfalse").setValue(false);
+                        mDatabase.child("users").child(username).child("ifsProgress").child("iffalse").setValue(false);
+                        mDatabase.child("users").child(username).child("ifsProgress").child("switchfalse").setValue(false);
+                        mDatabase.child("users").child(username).child("ifsProgress").child("whilefalse").setValue(false);
+
                         mDatabase.child("users").child(username).child("ifsProgress").child("mistakes").setValue(0);
                         mDatabase.child("users").child(username).child("ifsProgress").child("pososto").setValue(0);
+
+                        mDatabase.child("users").child(username).child("visited").child("classes").child("classes").setValue(0);
+                        mDatabase.child("users").child(username).child("visited").child("classes").child("getters").setValue(0);
+                        mDatabase.child("users").child(username).child("visited").child("classes").child("methods").setValue(0);
+                        mDatabase.child("users").child(username).child("visited").child("classes").child("oop").setValue(0);
+                        mDatabase.child("users").child(username).child("visited").child("classes").child("return").setValue(0);
+
+                        mDatabase.child("users").child(username).child("visited").child("concepts").child("comments").setValue(0);
+                        mDatabase.child("users").child(username).child("visited").child("concepts").child("input").setValue(0);
+                        mDatabase.child("users").child(username).child("visited").child("concepts").child("intro").setValue(0);
+                        mDatabase.child("users").child(username).child("visited").child("concepts").child("strings").setValue(0);
+                        mDatabase.child("users").child(username).child("visited").child("concepts").child("variables").setValue(0);
+
+                        mDatabase.child("users").child(username).child("visited").child("statements").child("elseif").setValue(0);
+                        mDatabase.child("users").child(username).child("visited").child("statements").child("for").setValue(0);
+                        mDatabase.child("users").child(username).child("visited").child("statements").child("if").setValue(0);
+                        mDatabase.child("users").child(username).child("visited").child("statements").child("switch").setValue(0);
+                        mDatabase.child("users").child(username).child("visited").child("statements").child("while").setValue(0);
+
                         Toast.makeText(getApplicationContext(),"You successfully signed up",Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                         startActivity(intent);

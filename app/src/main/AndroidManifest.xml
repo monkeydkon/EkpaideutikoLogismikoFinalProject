@@ -96,7 +96,9 @@
         <activity android:name=".ClassesSecondTestSecondActivity" />
         <activity android:name=".ClassesSecondTestThirdActivity" />
         <activity android:name=".ClassesSecondTestFourthActivity" />
-        <activity android:name=".ClassesSecondTestFifthActivity"></activity>
+        <activity android:name=".ClassesSecondTestFifthActivity" />
+        <activity android:name=".FirstProfActivity" />
+        <activity android:name=".ProfEpiskepsimotitaActivity"></activity>
     </application>
 
 </manifest>

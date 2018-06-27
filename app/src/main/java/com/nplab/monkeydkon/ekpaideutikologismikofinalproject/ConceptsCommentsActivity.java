@@ -42,6 +42,9 @@ public class ConceptsCommentsActivity extends AppCompatActivity {
 
     private DatabaseReference mDatabase;
 
+    int times;
+
+
 
 
     @Override
@@ -63,6 +66,20 @@ public class ConceptsCommentsActivity extends AppCompatActivity {
         username = intent.getStringExtra("whoIsLoggedIn");
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        mDatabase.child("users").child(username).child("visited").child("concepts").child("comments").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                times = Integer.parseInt(dataSnapshot.getValue().toString());
+                times++;
+                mDatabase.child("users").child(username).child("visited").child("concepts").child("comments").setValue(times);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
     }
 

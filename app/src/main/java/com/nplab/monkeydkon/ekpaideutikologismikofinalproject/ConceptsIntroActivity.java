@@ -5,14 +5,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class ConceptsIntroActivity extends AppCompatActivity {
 
     String username;
 
     private DatabaseReference mDatabase;
+
+    int times;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +29,21 @@ public class ConceptsIntroActivity extends AppCompatActivity {
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
+
+
+        mDatabase.child("users").child(username).child("visited").child("concepts").child("intro").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                times = Integer.parseInt(dataSnapshot.getValue().toString());
+                times++;
+                mDatabase.child("users").child(username).child("visited").child("concepts").child("intro").setValue(times);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
     public void done(View view){

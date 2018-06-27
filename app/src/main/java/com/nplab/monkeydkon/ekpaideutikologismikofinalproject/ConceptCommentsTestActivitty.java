@@ -35,6 +35,7 @@ public class ConceptCommentsTestActivitty extends AppCompatActivity{
     int getValue = 1;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +54,7 @@ public class ConceptCommentsTestActivitty extends AppCompatActivity{
         radio1 = findViewById(R.id.first);
         radio2 = findViewById(R.id.second);
         radio3 = findViewById(R.id.third);
+
 
         mDatabase.child("questions").child("basic").child("comments").child("first").addValueEventListener(new ValueEventListener() {
             @Override
