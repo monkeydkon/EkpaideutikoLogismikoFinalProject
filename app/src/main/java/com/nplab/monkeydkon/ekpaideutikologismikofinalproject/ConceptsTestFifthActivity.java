@@ -22,6 +22,8 @@ public class ConceptsTestFifthActivity extends AppCompatActivity {
 
     TextView question;
 
+    int extra;
+
     public RadioGroup radioGroup;
 
     RadioButton radio1;
@@ -45,6 +47,18 @@ public class ConceptsTestFifthActivity extends AppCompatActivity {
         question =findViewById(R.id.question);
         radioGroup = findViewById(R.id.radioGroup);
         radioGroup.clearCheck();
+
+        mDatabase.child("users").child(username).child("conceptsProgress").child("extra").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                extra = Integer.parseInt(dataSnapshot.getValue().toString());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
 
         radio1 = findViewById(R.id.first);
@@ -183,7 +197,7 @@ public class ConceptsTestFifthActivity extends AppCompatActivity {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             mDatabase.child("users").child(username).child("conceptsProgress").child("mistakes").setValue(0);
-                            mDatabase.child("users").child(username).child("conceptsProgress").child("pososto").setValue(((5-getValue)*100)/5);
+                            mDatabase.child("users").child(username).child("conceptsProgress").child("pososto").setValue((((5+extra)-getValue)*100)/(5+extra));
                         }
 
                         @Override
@@ -221,7 +235,7 @@ public class ConceptsTestFifthActivity extends AppCompatActivity {
                     mDatabase.child("users").child(username).child("conceptsProgress").child("pososto").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            mDatabase.child("users").child(username).child("conceptsProgress").child("pososto").setValue(((5-getValue)*100)/5);
+                            mDatabase.child("users").child(username).child("conceptsProgress").child("pososto").setValue((((5+extra)-getValue)*100)/(5+extra));
                         }
 
                         @Override
@@ -261,7 +275,7 @@ public class ConceptsTestFifthActivity extends AppCompatActivity {
                     mDatabase.child("users").child(username).child("conceptsProgress").child("pososto").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            mDatabase.child("users").child(username).child("conceptsProgress").child("pososto").setValue(((5-getValue)*100)/5);
+                            mDatabase.child("users").child(username).child("conceptsProgress").child("pososto").setValue((((5+extra)-getValue)*100)/(5+extra));
                         }
 
                         @Override
@@ -269,6 +283,8 @@ public class ConceptsTestFifthActivity extends AppCompatActivity {
 
                         }
                     });
+
+                    mDatabase.child("users").child(username).child("conceptsProgress").child("extra").setValue(0);
 
                     Toast.makeText(getApplicationContext(),"You passed the test",Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(getApplicationContext(),MainContentActivity.class);

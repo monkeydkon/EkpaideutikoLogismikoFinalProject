@@ -1,6 +1,8 @@
 package com.nplab.monkeydkon.ekpaideutikologismikofinalproject;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.RadioButton;
@@ -16,7 +18,11 @@ import com.google.firebase.database.ValueEventListener;
 
 public class ConceptsTestFirstActivity extends AppCompatActivity {
 
+    int extra;
+
     boolean commentsfalse;
+
+    boolean test;
 
     String username;
 
@@ -44,6 +50,78 @@ public class ConceptsTestFirstActivity extends AppCompatActivity {
         username = intent.getStringExtra("whoIsLoggedIn");
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        mDatabase.child("users").child(username).child("conceptsProgress").child("extra").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                extra = Integer.parseInt(dataSnapshot.getValue().toString());
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        mDatabase.child("users").child(username).child("conceptsProgress").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if((Boolean)dataSnapshot.child("commentsfalse").getValue()){
+                    extra++;
+                    if(extra == 1){
+                        showMessage("Extra Question","You can only comment a single line at once", true);
+                    }
+                    return;
+
+                }
+//                if((Boolean)dataSnapshot.child("inputfalse").getValue()){
+//                    extra=2;
+//                   if(extra == 2){
+//                      showMessage("Extra Question","You can take user input only from the keyboard", false);
+//                       // mDatabase.child("users").child(username).child("conceptsProgress").child("extra").setValue(extra);
+//                        return;
+//                    }
+//               }
+//
+//               return;
+//                if((Boolean)dataSnapshot.child("introfalse").getValue()){
+//                    extra++;
+//                    if(extra == 3){
+//                        showMessage("Extra Question","C# is a product of microsoft", true);
+//                        mDatabase.child("users").child(username).child("conceptsProgress").child("extra").setValue(extra);
+//                        return;
+//                    }
+//                }
+//                if((Boolean)dataSnapshot.child("stringfalse").getValue()){
+//                    extra++;
+//                    if(extra == 4){
+//                        showMessage("Extra Question","Strings are the same as characters", false);
+//                        mDatabase.child("users").child(username).child("conceptsProgress").child("extra").setValue(extra);
+//                        return;
+//                    }
+//                }
+//                if((Boolean)dataSnapshot.child("variablesfalse").getValue()){
+//                    extra++;
+//                    if(extra == 5){
+//                        showMessage("Extra Question","A variable can have more than one values at a time", false);
+//                        mDatabase.child("users").child(username).child("conceptsProgress").child("extra").setValue(extra);
+//                        return;
+//                    }
+//                }
+
+            }
+
+
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+
 
         question =findViewById(R.id.question);
         radioGroup = findViewById(R.id.radioGroup);
@@ -196,5 +274,37 @@ public class ConceptsTestFirstActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Toast.makeText(this,"You first have to finish the test",Toast.LENGTH_SHORT).show();
+    }
+
+    public void showMessage(String title, String text, final boolean which){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(text);
+        builder.setPositiveButton("TRUE", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if(!which){
+                    getValue++;
+                    mDatabase.child("users").child(username).child("conceptsProgress").child("mistakes").setValue(getValue);
+                }
+
+                dialogInterface.cancel();
+                dialogInterface.dismiss();
+
+            }
+        });
+        builder.setNegativeButton("FALSE", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if(which){
+                    getValue++;
+                    mDatabase.child("users").child(username).child("conceptsProgress").child("mistakes").setValue(getValue);
+                }
+                dialogInterface.cancel();
+                dialogInterface.dismiss();
+            }
+        });
+        builder.show();
     }
 }
