@@ -7,6 +7,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,6 +39,9 @@ public class MainContentActivity extends AppCompatActivity {
 
     int classesPososto,conceptsPososto,ifsPososto;
 
+    Button help;
+
+
     TextView logout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +52,8 @@ public class MainContentActivity extends AppCompatActivity {
         learnIfAndLoops = findViewById(R.id.learnIfAndLoops);
         learnClassesAndObjects = findViewById(R.id.learnClassesAndObjects);
         takeCertificate = findViewById(R.id.takeCertificate);
+
+        help = findViewById(R.id.help);
 
         logout = findViewById(R.id.logout);
 
@@ -313,6 +319,12 @@ public class MainContentActivity extends AppCompatActivity {
 
     public void signout(View view){
         Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
+        startActivity(intent);
+    }
+
+    public void help(View view){
+        Intent intent = new Intent(getApplicationContext(),PdfActivity.class);
+        intent.putExtra("whoIsLoggedIn", username);
         startActivity(intent);
     }
 }

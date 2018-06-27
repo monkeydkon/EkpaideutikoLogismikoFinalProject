@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.nplab.monkeydkon.ekpaideutikologismikofinalproject">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -98,7 +100,8 @@
         <activity android:name=".ClassesSecondTestFourthActivity" />
         <activity android:name=".ClassesSecondTestFifthActivity" />
         <activity android:name=".FirstProfActivity" />
-        <activity android:name=".ProfEpiskepsimotitaActivity"></activity>
+        <activity android:name=".ProfEpiskepsimotitaActivity" />
+        <activity android:name=".PdfActivity"></activity>
     </application>
 
 </manifest>
