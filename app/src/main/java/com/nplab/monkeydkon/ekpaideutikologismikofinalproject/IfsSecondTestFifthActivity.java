@@ -153,6 +153,8 @@ public class IfsSecondTestFifthActivity extends AppCompatActivity {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             mDatabase.child("users").child(username).child("ifsProgress").child("mistakes").setValue(0);
+                            mDatabase.child("users").child(username).child("ifsProgress").child("pososto").setValue(((5-getValue)*100)/5);
+
                         }
 
                         @Override

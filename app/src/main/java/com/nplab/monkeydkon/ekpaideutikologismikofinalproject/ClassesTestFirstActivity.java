@@ -53,8 +53,8 @@ public class ClassesTestFirstActivity extends AppCompatActivity {
 
         mDatabase.child("users").child(username).child("classesProgress").child("mistakes").setValue(0);
         mDatabase.child("users").child(username).child("classesProgress").child("pososto").setValue(0);
-        mDatabase.child("users").child(username).child("conceptsProgress").child("oopfalse").setValue(false);
-        mDatabase.child("users").child(username).child("conceptsProgress").child("oopfalse").addValueEventListener(new ValueEventListener() {
+        mDatabase.child("users").child(username).child("classesProgress").child("oopfalse").setValue(false);
+        mDatabase.child("users").child(username).child("classesProgress").child("oopfalse").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 oop=(boolean)dataSnapshot.getValue(); //get "false" value from firebase

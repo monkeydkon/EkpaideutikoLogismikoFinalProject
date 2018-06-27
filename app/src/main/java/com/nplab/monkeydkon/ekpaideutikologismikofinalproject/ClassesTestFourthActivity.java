@@ -50,8 +50,8 @@ public class ClassesTestFourthActivity extends AppCompatActivity {
         radio1 = findViewById(R.id.first);
         radio2 = findViewById(R.id.second);
         radio3 = findViewById(R.id.third);
-        mDatabase.child("users").child(username).child("conceptsProgress").child("gettersfalse").setValue(false);
-        mDatabase.child("users").child(username).child("conceptsProgress").child("gettersfalse").addValueEventListener(new ValueEventListener() {
+        mDatabase.child("users").child(username).child("classesProgress").child("gettersfalse").setValue(false);
+        mDatabase.child("users").child(username).child("classesProgress").child("gettersfalse").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 getters=(boolean)dataSnapshot.getValue(); //get "false" value from firebase

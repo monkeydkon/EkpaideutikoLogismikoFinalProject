@@ -50,8 +50,8 @@ public class ConceptsTestFifthActivity extends AppCompatActivity {
         radio1 = findViewById(R.id.first);
         radio2 = findViewById(R.id.second);
         radio3 = findViewById(R.id.third);
-        mDatabase.child("users").child(username).child("conceptsProgress").child("variablesfalse").setValue(false);
-        mDatabase.child("users").child(username).child("conceptsProgress").child("variablesfalse").addValueEventListener(new ValueEventListener() {
+        mDatabase.child("users").child(username).child("conceptsProgress").child("introfalse").setValue(false);
+        mDatabase.child("users").child(username).child("conceptsProgress").child("introfalse").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 variables=(boolean)dataSnapshot.getValue(); //get "false" value from firebase
@@ -109,7 +109,7 @@ public class ConceptsTestFifthActivity extends AppCompatActivity {
                                     mDatabase.child("users").child(username).child("conceptsProgress").child("mistakes").setValue(getValue);
                                     if(variables)
                                     {
-                                        mDatabase.child("users").child(username).child("conceptsProgress").child("variablesfalse").setValue(variables);
+                                        mDatabase.child("users").child(username).child("conceptsProgress").child("introfalse").setValue(variables);
                                     }
 
                                     //check();
@@ -134,7 +134,7 @@ public class ConceptsTestFifthActivity extends AppCompatActivity {
                                     mDatabase.child("users").child(username).child("conceptsProgress").child("mistakes").setValue(getValue);
                                     if(variables)
                                     {
-                                        mDatabase.child("users").child(username).child("conceptsProgress").child("variablesfalse").setValue(variables);
+                                        mDatabase.child("users").child(username).child("conceptsProgress").child("introfalse").setValue(variables);
                                     }
 
                                     //check();
@@ -158,7 +158,7 @@ public class ConceptsTestFifthActivity extends AppCompatActivity {
                                     mDatabase.child("users").child(username).child("conceptsProgress").child("mistakes").setValue(getValue);
                                     if(variables)
                                     {
-                                        mDatabase.child("users").child(username).child("conceptsProgress").child("variablesfalse").setValue(variables);
+                                        mDatabase.child("users").child(username).child("conceptsProgress").child("introfalse").setValue(variables);
                                     }
 
                                     // check();
@@ -183,6 +183,7 @@ public class ConceptsTestFifthActivity extends AppCompatActivity {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             mDatabase.child("users").child(username).child("conceptsProgress").child("mistakes").setValue(0);
+                            mDatabase.child("users").child(username).child("conceptsProgress").child("pososto").setValue(((5-getValue)*100)/5);
                         }
 
                         @Override

@@ -50,8 +50,8 @@ public class ClassesTestFifthActivity extends AppCompatActivity {
         radio1 = findViewById(R.id.first);
         radio2 = findViewById(R.id.second);
         radio3 = findViewById(R.id.third);
-        mDatabase.child("users").child(username).child("conceptsProgress").child("methodsfalse").setValue(false);
-        mDatabase.child("users").child(username).child("conceptsProgress").child("methodsfalse").addValueEventListener(new ValueEventListener() {
+        mDatabase.child("users").child(username).child("classesProgress").child("methodsfalse").setValue(false);
+        mDatabase.child("users").child(username).child("classesProgress").child("methodsfalse").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 methods=(boolean)dataSnapshot.getValue(); //get "false" value from firebase
@@ -179,6 +179,7 @@ public class ClassesTestFifthActivity extends AppCompatActivity {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             mDatabase.child("users").child(username).child("classesProgress").child("mistakes").setValue(0);
+                            mDatabase.child("users").child(username).child("classesProgress").child("pososto").setValue(((5-getValue)*100)/5);
                         }
 
                         @Override
