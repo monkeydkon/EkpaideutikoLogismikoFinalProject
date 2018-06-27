@@ -17,7 +17,7 @@ import com.google.firebase.database.ValueEventListener;
 public class ConceptsTestSecondActivity extends AppCompatActivity {
 
     String username;
-
+    boolean input;
     private DatabaseReference mDatabase;
 
     TextView question;
@@ -51,7 +51,17 @@ public class ConceptsTestSecondActivity extends AppCompatActivity {
         radio1 = findViewById(R.id.first);
         radio2 = findViewById(R.id.second);
         radio3 = findViewById(R.id.third);
+        mDatabase.child("users").child(username).child("conceptsProgress").child("inputfalse").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                input=(boolean)dataSnapshot.getValue(); //get "false" value from firebase
+            }
 
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
         mDatabase.child("questions").child("basic").child("input").child("first").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -95,7 +105,12 @@ public class ConceptsTestSecondActivity extends AppCompatActivity {
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 1){
                                     getValue++;
+                                    input=true;
                                     mDatabase.child("users").child(username).child("conceptsProgress").child("mistakes").setValue(getValue);
+                                    if(input)
+                                    {
+                                        mDatabase.child("users").child(username).child("conceptsProgress").child("inputfalse").setValue(input);
+                                    }
 
                                     //check();
                                 }
@@ -115,7 +130,12 @@ public class ConceptsTestSecondActivity extends AppCompatActivity {
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 2){
                                     getValue++;
+                                    input=true;
                                     mDatabase.child("users").child(username).child("conceptsProgress").child("mistakes").setValue(getValue);
+                                    if(input)
+                                    {
+                                        mDatabase.child("users").child(username).child("conceptsProgress").child("inputfalse").setValue(input);
+                                    }
 
                                     //check();
                                 }
@@ -134,7 +154,13 @@ public class ConceptsTestSecondActivity extends AppCompatActivity {
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 3){
                                     getValue++;
+                                    input=true;
+
                                     mDatabase.child("users").child(username).child("conceptsProgress").child("mistakes").setValue(getValue);
+                                    if(input)
+                                    {
+                                        mDatabase.child("users").child(username).child("conceptsProgress").child("inputfalse").setValue(input);
+                                    }
 
                                    // check();
                                 }

@@ -17,7 +17,7 @@ import com.google.firebase.database.ValueEventListener;
 public class ConceptsTestFifthActivity extends AppCompatActivity {
 
     String username;
-
+    boolean variables;
     private DatabaseReference mDatabase;
 
     TextView question;
@@ -50,7 +50,17 @@ public class ConceptsTestFifthActivity extends AppCompatActivity {
         radio1 = findViewById(R.id.first);
         radio2 = findViewById(R.id.second);
         radio3 = findViewById(R.id.third);
+        mDatabase.child("users").child(username).child("conceptsProgress").child("variablesfalse").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                variables=(boolean)dataSnapshot.getValue(); //get "false" value from firebase
+            }
 
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
         mDatabase.child("questions").child("basic").child("intro").child("first").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -94,7 +104,12 @@ public class ConceptsTestFifthActivity extends AppCompatActivity {
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 1){
                                     getValue++;
+                                    variables=true;
                                     mDatabase.child("users").child(username).child("conceptsProgress").child("mistakes").setValue(getValue);
+                                    if(variables)
+                                    {
+                                        mDatabase.child("users").child(username).child("conceptsProgress").child("variablesfalse").setValue(variables);
+                                    }
 
                                     //check();
                                 }
@@ -114,7 +129,12 @@ public class ConceptsTestFifthActivity extends AppCompatActivity {
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 2){
                                     getValue++;
+                                    variables=true;
                                     mDatabase.child("users").child(username).child("conceptsProgress").child("mistakes").setValue(getValue);
+                                    if(variables)
+                                    {
+                                        mDatabase.child("users").child(username).child("conceptsProgress").child("variablesfalse").setValue(variables);
+                                    }
 
                                     //check();
                                 }
@@ -133,7 +153,12 @@ public class ConceptsTestFifthActivity extends AppCompatActivity {
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 3){
                                     getValue++;
+                                    variables=true;
                                     mDatabase.child("users").child(username).child("conceptsProgress").child("mistakes").setValue(getValue);
+                                    if(variables)
+                                    {
+                                        mDatabase.child("users").child(username).child("conceptsProgress").child("variablesfalse").setValue(variables);
+                                    }
 
                                     // check();
                                 }
@@ -147,6 +172,9 @@ public class ConceptsTestFifthActivity extends AppCompatActivity {
 
                         break;
                 }
+
+
+
 
                 // P E R I P T W S E I S
                 if((getValue) > 2){
@@ -200,7 +228,7 @@ public class ConceptsTestFifthActivity extends AppCompatActivity {
                         }
                     });
 
-                    Toast.makeText(getApplicationContext(),"You passed the",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"You passed the test",Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(getApplicationContext(),MainContentActivity.class);
                     intent.putExtra("whoIsLoggedIn", username);
                     startActivity(intent);

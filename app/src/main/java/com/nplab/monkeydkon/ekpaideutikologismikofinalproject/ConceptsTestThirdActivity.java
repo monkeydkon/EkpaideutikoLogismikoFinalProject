@@ -18,6 +18,7 @@ public class ConceptsTestThirdActivity extends AppCompatActivity {
 
 
     String username;
+    boolean intro;
 
     private DatabaseReference mDatabase;
 
@@ -51,7 +52,17 @@ public class ConceptsTestThirdActivity extends AppCompatActivity {
         radio1 = findViewById(R.id.first);
         radio2 = findViewById(R.id.second);
         radio3 = findViewById(R.id.third);
+        mDatabase.child("users").child(username).child("conceptsProgress").child("introfalse").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                intro=(boolean)dataSnapshot.getValue(); //get "false" value from firebase
+            }
 
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
         mDatabase.child("questions").child("basic").child("variables").child("first").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -95,7 +106,12 @@ public class ConceptsTestThirdActivity extends AppCompatActivity {
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 1){
                                     getValue++;
+                                    intro=true;
                                     mDatabase.child("users").child(username).child("conceptsProgress").child("mistakes").setValue(getValue);
+                                    if(intro)
+                                    {
+                                        mDatabase.child("users").child(username).child("conceptsProgress").child("inputfalse").setValue(intro);
+                                    }
 
                                     //check();
                                 }
@@ -115,7 +131,12 @@ public class ConceptsTestThirdActivity extends AppCompatActivity {
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 2){
                                     getValue++;
+                                    intro=true;
                                     mDatabase.child("users").child(username).child("conceptsProgress").child("mistakes").setValue(getValue);
+                                    if(intro)
+                                    {
+                                        mDatabase.child("users").child(username).child("conceptsProgress").child("inputfalse").setValue(intro);
+                                    }
 
                                     //check();
                                 }
@@ -134,7 +155,12 @@ public class ConceptsTestThirdActivity extends AppCompatActivity {
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 3){
                                     getValue++;
+                                    intro=true;
                                     mDatabase.child("users").child(username).child("conceptsProgress").child("mistakes").setValue(getValue);
+                                    if(intro)
+                                    {
+                                        mDatabase.child("users").child(username).child("conceptsProgress").child("inputfalse").setValue(intro);
+                                    }
 
                                     // check();
                                 }
@@ -148,6 +174,7 @@ public class ConceptsTestThirdActivity extends AppCompatActivity {
 
                         break;
                 }
+
                 Intent intent = new Intent(getApplicationContext(),ConceptsTestFourthActivity.class);
                 intent.putExtra("whoIsLoggedIn", username);
                 startActivity(intent);

@@ -17,6 +17,7 @@ import com.google.firebase.database.ValueEventListener;
 public class ConceptsTestFourthActivity extends AppCompatActivity {
 
     String username;
+    boolean strings;
 
     private DatabaseReference mDatabase;
 
@@ -50,7 +51,17 @@ public class ConceptsTestFourthActivity extends AppCompatActivity {
         radio1 = findViewById(R.id.first);
         radio2 = findViewById(R.id.second);
         radio3 = findViewById(R.id.third);
+        mDatabase.child("users").child(username).child("conceptsProgress").child("stringfalse").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                strings=(boolean)dataSnapshot.getValue(); //get "false" value from firebase
+            }
 
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
         mDatabase.child("questions").child("basic").child("strings").child("first").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -94,7 +105,12 @@ public class ConceptsTestFourthActivity extends AppCompatActivity {
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 1){
                                     getValue++;
+                                    strings=true;
                                     mDatabase.child("users").child(username).child("conceptsProgress").child("mistakes").setValue(getValue);
+                                    if(strings)
+                                    {
+                                        mDatabase.child("users").child(username).child("conceptsProgress").child("stringfalse").setValue(strings);
+                                    }
 
                                     //check();
                                 }
@@ -114,7 +130,12 @@ public class ConceptsTestFourthActivity extends AppCompatActivity {
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 2){
                                     getValue++;
+                                    strings=true;
                                     mDatabase.child("users").child(username).child("conceptsProgress").child("mistakes").setValue(getValue);
+                                    if(strings)
+                                    {
+                                        mDatabase.child("users").child(username).child("conceptsProgress").child("stringfalse").setValue(strings);
+                                    }
 
                                     //check();
                                 }
@@ -133,7 +154,12 @@ public class ConceptsTestFourthActivity extends AppCompatActivity {
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 3){
                                     getValue++;
+                                    strings=true;
                                     mDatabase.child("users").child(username).child("conceptsProgress").child("mistakes").setValue(getValue);
+                                    if(strings)
+                                    {
+                                        mDatabase.child("users").child(username).child("conceptsProgress").child("stringfalse").setValue(strings);
+                                    }
 
                                     // check();
                                 }
@@ -147,6 +173,7 @@ public class ConceptsTestFourthActivity extends AppCompatActivity {
 
                         break;
                 }
+
 //                Intent intent = new Intent(getApplicationContext(),ConceptsTestFourthActivity.class);
 //                intent.putExtra("whoIsLoggedIn", username);
 //                startActivity(intent);

@@ -16,6 +16,8 @@ import com.google.firebase.database.ValueEventListener;
 
 public class ConceptsTestFirstActivity extends AppCompatActivity {
 
+    boolean commentsfalse;
+
     String username;
 
     private DatabaseReference mDatabase;
@@ -54,6 +56,19 @@ public class ConceptsTestFirstActivity extends AppCompatActivity {
 
         mDatabase.child("users").child(username).child("conceptsProgress").child("mistakes").setValue(0);
         mDatabase.child("users").child(username).child("conceptsProgress").child("pososto").setValue(0);
+
+        mDatabase.child("users").child(username).child("conceptsProgress").child("commentsfalse").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                commentsfalse=(boolean)dataSnapshot.getValue(); //get "false" value from firebase
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
 
         mDatabase.child("questions").child("basic").child("comments").child("first").addValueEventListener(new ValueEventListener() {
             @Override
@@ -98,7 +113,13 @@ public class ConceptsTestFirstActivity extends AppCompatActivity {
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 1){
                                         getValue++;
+                                        commentsfalse=true;
                                         mDatabase.child("users").child(username).child("conceptsProgress").child("mistakes").setValue(getValue);
+                                    if(commentsfalse)
+                                    {
+                                        mDatabase.child("users").child(username).child("conceptsProgress").child("commentsfalse").setValue(commentsfalse);
+                                    }
+
                                 }
                             }
 
@@ -116,7 +137,13 @@ public class ConceptsTestFirstActivity extends AppCompatActivity {
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 2){
                                     getValue++;
+                                    commentsfalse=true;
                                     mDatabase.child("users").child(username).child("conceptsProgress").child("mistakes").setValue(getValue);
+                                    if(commentsfalse)
+                                    {
+                                        mDatabase.child("users").child(username).child("conceptsProgress").child("commentsfalse").setValue(commentsfalse);
+                                    }
+
                                 }
                             }
 
@@ -133,7 +160,13 @@ public class ConceptsTestFirstActivity extends AppCompatActivity {
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 3){
                                     getValue++;
+                                    commentsfalse=true;
                                     mDatabase.child("users").child(username).child("conceptsProgress").child("mistakes").setValue(getValue);
+                                    if(commentsfalse)
+                                    {
+                                        mDatabase.child("users").child(username).child("conceptsProgress").child("commentsfalse").setValue(commentsfalse);
+                                    }
+
                                 }
                             }
 
@@ -145,6 +178,7 @@ public class ConceptsTestFirstActivity extends AppCompatActivity {
 
                         break;
                 }
+
 
                 goToSecond();
             }
