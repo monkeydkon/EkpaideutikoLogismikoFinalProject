@@ -48,7 +48,7 @@ public class ConceptsTestFifthActivity extends AppCompatActivity {
         radioGroup = findViewById(R.id.radioGroup);
         radioGroup.clearCheck();
 
-        mDatabase.child("users").child(username).child("conceptsProgress").child("extra").addListenerForSingleValueEvent(new ValueEventListener() {
+        mDatabase.child("users").child(username).child("conceptsextra").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 extra = Integer.parseInt(dataSnapshot.getValue().toString());
@@ -284,7 +284,7 @@ public class ConceptsTestFifthActivity extends AppCompatActivity {
                         }
                     });
 
-                    mDatabase.child("users").child(username).child("conceptsProgress").child("extra").setValue(0);
+                    mDatabase.child("users").child(username).child("conceptsextra").setValue(0);
 
                     Toast.makeText(getApplicationContext(),"You passed the test",Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(getApplicationContext(),MainContentActivity.class);

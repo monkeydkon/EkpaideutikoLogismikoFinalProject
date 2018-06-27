@@ -22,7 +22,7 @@ public class ConceptsTestFirstActivity extends AppCompatActivity {
 
     boolean commentsfalse;
 
-    boolean test;
+   public boolean test1,test2,test3,test4,test5;
 
     String username;
 
@@ -51,19 +51,21 @@ public class ConceptsTestFirstActivity extends AppCompatActivity {
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        mDatabase.child("users").child(username).child("conceptsProgress").child("extra").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                extra = Integer.parseInt(dataSnapshot.getValue().toString());
-            }
+//        mDatabase.child("users").child(username).child("conceptsextra").addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                extra = Integer.parseInt(dataSnapshot.getValue().toString());
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+        extra = 0;
 
-            }
-        });
-
-        mDatabase.child("users").child(username).child("conceptsProgress").addValueEventListener(new ValueEventListener() {
+        mDatabase.child("users").child(username).child("conceptsProgress").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if((Boolean)dataSnapshot.child("commentsfalse").getValue()){
@@ -77,34 +79,37 @@ public class ConceptsTestFirstActivity extends AppCompatActivity {
 //                if((Boolean)dataSnapshot.child("inputfalse").getValue()){
 //                    extra=2;
 //                   if(extra == 2){
-//                      showMessage("Extra Question","You can take user input only from the keyboard", false);
+//                     // showMessage("Extra Question","You can take user input only from the keyboard", false);
+//                      test2=true;
 //                       // mDatabase.child("users").child(username).child("conceptsProgress").child("extra").setValue(extra);
 //                        return;
 //                    }
 //               }
 //
-//               return;
 //                if((Boolean)dataSnapshot.child("introfalse").getValue()){
-//                    extra++;
+//                    extra=3;;
 //                    if(extra == 3){
-//                        showMessage("Extra Question","C# is a product of microsoft", true);
-//                        mDatabase.child("users").child(username).child("conceptsProgress").child("extra").setValue(extra);
+//                      //  showMessage("Extra Question","C# is a product of microsoft", true);
+//                        test3=true;
+//                       // mDatabase.child("users").child(username).child("conceptsextra").setValue(extra);
 //                        return;
 //                    }
 //                }
 //                if((Boolean)dataSnapshot.child("stringfalse").getValue()){
-//                    extra++;
+//                    extra=4;
 //                    if(extra == 4){
-//                        showMessage("Extra Question","Strings are the same as characters", false);
-//                        mDatabase.child("users").child(username).child("conceptsProgress").child("extra").setValue(extra);
+//                       // showMessage("Extra Question","Strings are the same as characters", false);
+//                        test4=true;
+//                      //  mDatabase.child("users").child(username).child("conceptsextra").setValue(extra);
 //                        return;
 //                    }
 //                }
 //                if((Boolean)dataSnapshot.child("variablesfalse").getValue()){
-//                    extra++;
+//                    extra=5;
 //                    if(extra == 5){
-//                        showMessage("Extra Question","A variable can have more than one values at a time", false);
-//                        mDatabase.child("users").child(username).child("conceptsProgress").child("extra").setValue(extra);
+//                      //  showMessage("Extra Question","A variable can have more than one values at a time", false);
+//                        test5=true;
+//                      //  mDatabase.child("users").child(username).child("conceptsextra").setValue(extra);
 //                        return;
 //                    }
 //                }
@@ -119,6 +124,8 @@ public class ConceptsTestFirstActivity extends AppCompatActivity {
             }
         });
 
+        Toast.makeText(getApplicationContext(),String.valueOf(test1),Toast.LENGTH_SHORT).show();
+
 
 
 
@@ -131,7 +138,10 @@ public class ConceptsTestFirstActivity extends AppCompatActivity {
         radio1 = findViewById(R.id.first);
         radio2 = findViewById(R.id.second);
         radio3 = findViewById(R.id.third);
-
+        if(test1)
+        {
+            showMessage("Extra Question","You can only comment a single line at once", true);
+        }
         mDatabase.child("users").child(username).child("conceptsProgress").child("mistakes").setValue(0);
         mDatabase.child("users").child(username).child("conceptsProgress").child("pososto").setValue(0);
         mDatabase.child("users").child(username).child("conceptsProgress").child("commentsfalse").setValue(false);
