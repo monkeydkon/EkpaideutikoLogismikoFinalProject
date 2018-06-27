@@ -1,6 +1,8 @@
 package com.nplab.monkeydkon.ekpaideutikologismikofinalproject;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.RadioButton;
@@ -27,7 +29,7 @@ public class IfsTestFirstActivity extends AppCompatActivity {
     RadioButton radio1;
     RadioButton radio2;
     RadioButton radio3;
-
+int extra;
     Boolean correct = false;
 
     int getValue;
@@ -45,6 +47,67 @@ public class IfsTestFirstActivity extends AppCompatActivity {
         question =findViewById(R.id.question);
         radioGroup = findViewById(R.id.radioGroup);
         radioGroup.clearCheck();
+
+        extra = 0;
+
+        mDatabase.child("users").child(username).child("ifsProgress").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if((Boolean)dataSnapshot.child("iffalse").getValue()){
+                    extra++;
+                    if(extra == 1){
+                        showMessage("Extra Question","If can exist without an else", true);
+                    }
+                    return;
+
+                }
+//                if((Boolean)dataSnapshot.child("inputfalse").getValue()){
+//                    extra=2;
+//                   if(extra == 2){
+//                     // showMessage("Extra Question","You can take user input only from the keyboard", false);
+//                      test2=true;
+//                       // mDatabase.child("users").child(username).child("conceptsProgress").child("extra").setValue(extra);
+//                        return;
+//                    }
+//               }
+//
+//                if((Boolean)dataSnapshot.child("introfalse").getValue()){
+//                    extra=3;;
+//                    if(extra == 3){
+//                      //  showMessage("Extra Question","C# is a product of microsoft", true);
+//                        test3=true;
+//                       // mDatabase.child("users").child(username).child("conceptsextra").setValue(extra);
+//                        return;
+//                    }
+//                }
+//                if((Boolean)dataSnapshot.child("stringfalse").getValue()){
+//                    extra=4;
+//                    if(extra == 4){
+//                       // showMessage("Extra Question","Strings are the same as characters", false);
+//                        test4=true;
+//                      //  mDatabase.child("users").child(username).child("conceptsextra").setValue(extra);
+//                        return;
+//                    }
+//                }
+//                if((Boolean)dataSnapshot.child("variablesfalse").getValue()){
+//                    extra=5;
+//                    if(extra == 5){
+//                      //  showMessage("Extra Question","A variable can have more than one values at a time", false);
+//                        test5=true;
+//                      //  mDatabase.child("users").child(username).child("conceptsextra").setValue(extra);
+//                        return;
+//                    }
+//                }
+
+            }
+
+
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
 
         radio1 = findViewById(R.id.first);
@@ -187,5 +250,47 @@ public class IfsTestFirstActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Toast.makeText(this,"You first have to finish the test",Toast.LENGTH_SHORT).show();
+    }
+
+    public void showMessage(String title, String text, final boolean which){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(text);
+        builder.setPositiveButton("TRUE", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if(!which){
+                    getValue++;
+                    mDatabase.child("users").child(username).child("ifsProgress").child("mistakes").setValue(getValue);
+                    Toast.makeText(getApplicationContext(),"Wrong",Toast.LENGTH_SHORT).show();
+
+                }else{
+                    Toast.makeText(getApplicationContext(),"Correct",Toast.LENGTH_SHORT).show();
+
+                }
+
+                dialogInterface.cancel();
+                dialogInterface.dismiss();
+
+            }
+        });
+        builder.setNegativeButton("FALSE", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                if(which){
+                    getValue++;
+                    mDatabase.child("users").child(username).child("ifsProgress").child("mistakes").setValue(getValue);
+                    Toast.makeText(getApplicationContext(),"Wrong",Toast.LENGTH_SHORT).show();
+
+                }else{
+                    Toast.makeText(getApplicationContext(),"Correct",Toast.LENGTH_SHORT).show();
+
+                }
+                dialogInterface.cancel();
+                dialogInterface.dismiss();
+            }
+        });
+        builder.show();
     }
 }

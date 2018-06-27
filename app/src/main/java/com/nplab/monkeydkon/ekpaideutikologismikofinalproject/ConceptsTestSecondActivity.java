@@ -35,6 +35,7 @@ public class ConceptsTestSecondActivity extends AppCompatActivity {
     int getValue;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +45,8 @@ public class ConceptsTestSecondActivity extends AppCompatActivity {
         username = intent.getStringExtra("whoIsLoggedIn");
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        extra = 0;
+
 
         question =findViewById(R.id.question);
         radioGroup = findViewById(R.id.radioGroup);
@@ -286,7 +289,12 @@ public class ConceptsTestSecondActivity extends AppCompatActivity {
                 if(!which){
                     getValue++;
                     mDatabase.child("users").child(username).child("conceptsProgress").child("mistakes").setValue(getValue);
+                    Toast.makeText(getApplicationContext(),"Wrong",Toast.LENGTH_SHORT).show();
+
+                }else {
+                    Toast.makeText(getApplicationContext(),"Correct",Toast.LENGTH_SHORT).show();
                 }
+
 
                 dialogInterface.cancel();
                 dialogInterface.dismiss();
@@ -299,6 +307,11 @@ public class ConceptsTestSecondActivity extends AppCompatActivity {
                 if(which){
                     getValue++;
                     mDatabase.child("users").child(username).child("conceptsProgress").child("mistakes").setValue(getValue);
+                    Toast.makeText(getApplicationContext(),"Wrong",Toast.LENGTH_SHORT).show();
+
+                }else{
+                    Toast.makeText(getApplicationContext(),"Correct",Toast.LENGTH_SHORT).show();
+
                 }
                 dialogInterface.cancel();
                 dialogInterface.dismiss();

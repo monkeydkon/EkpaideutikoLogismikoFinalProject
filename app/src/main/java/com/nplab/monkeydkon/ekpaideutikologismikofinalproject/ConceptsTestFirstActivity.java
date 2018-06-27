@@ -297,6 +297,9 @@ public class ConceptsTestFirstActivity extends AppCompatActivity {
                 if(!which){
                     getValue++;
                     mDatabase.child("users").child(username).child("conceptsProgress").child("mistakes").setValue(getValue);
+                    Toast.makeText(getApplicationContext(),"Wrong",Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(getApplicationContext(),"Correct",Toast.LENGTH_SHORT).show();
                 }
 
                 dialogInterface.cancel();
@@ -310,7 +313,11 @@ public class ConceptsTestFirstActivity extends AppCompatActivity {
                 if(which){
                     getValue++;
                     mDatabase.child("users").child(username).child("conceptsProgress").child("mistakes").setValue(getValue);
+                    Toast.makeText(getApplicationContext(),"Wrong",Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(getApplicationContext(),"Correct",Toast.LENGTH_SHORT).show();
                 }
+
                 dialogInterface.cancel();
                 dialogInterface.dismiss();
             }

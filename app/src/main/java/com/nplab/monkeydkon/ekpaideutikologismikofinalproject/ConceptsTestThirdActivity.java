@@ -47,6 +47,8 @@ public class ConceptsTestThirdActivity extends AppCompatActivity {
         username = intent.getStringExtra("whoIsLoggedIn");
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        extra = 0;
+
 
         question =findViewById(R.id.question);
         radioGroup = findViewById(R.id.radioGroup);
@@ -58,7 +60,7 @@ public class ConceptsTestThirdActivity extends AppCompatActivity {
                 if((Boolean)dataSnapshot.child("variablesfalse").getValue()){
                     extra++;
                     if(extra == 1){
-                        showMessage("Extra Question","You can take user input only from the keyboard", false);
+                        showMessage("Extra Question","A variable can have 2 values at the same time", false);
                     }
                     return;
 
@@ -264,6 +266,11 @@ public class ConceptsTestThirdActivity extends AppCompatActivity {
                 if(!which){
                     getValue++;
                     mDatabase.child("users").child(username).child("conceptsProgress").child("mistakes").setValue(getValue);
+                    Toast.makeText(getApplicationContext(),"Wrong",Toast.LENGTH_SHORT).show();
+
+                }else{
+                    Toast.makeText(getApplicationContext(),"Correct",Toast.LENGTH_SHORT).show();
+
                 }
 
                 dialogInterface.cancel();
@@ -277,6 +284,11 @@ public class ConceptsTestThirdActivity extends AppCompatActivity {
                 if(which){
                     getValue++;
                     mDatabase.child("users").child(username).child("conceptsProgress").child("mistakes").setValue(getValue);
+                    Toast.makeText(getApplicationContext(),"Wrong",Toast.LENGTH_SHORT).show();
+
+                }else{
+                    Toast.makeText(getApplicationContext(),"Correct",Toast.LENGTH_SHORT).show();
+
                 }
                 dialogInterface.cancel();
                 dialogInterface.dismiss();

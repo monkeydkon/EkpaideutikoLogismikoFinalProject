@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -37,6 +38,7 @@ public class MainContentActivity extends AppCompatActivity {
 
     int classesPososto,conceptsPososto,ifsPososto;
 
+    TextView logout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +48,8 @@ public class MainContentActivity extends AppCompatActivity {
         learnIfAndLoops = findViewById(R.id.learnIfAndLoops);
         learnClassesAndObjects = findViewById(R.id.learnClassesAndObjects);
         takeCertificate = findViewById(R.id.takeCertificate);
+
+        logout = findViewById(R.id.logout);
 
         info = findViewById(R.id.info);
 
@@ -305,5 +309,10 @@ public class MainContentActivity extends AppCompatActivity {
             }
         });
         builder.show();
+    }
+
+    public void signout(View view){
+        Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
+        startActivity(intent);
     }
 }
