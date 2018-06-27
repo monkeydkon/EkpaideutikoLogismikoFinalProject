@@ -56,7 +56,7 @@ public class ConceptsTestFirstActivity extends AppCompatActivity {
 
         mDatabase.child("users").child(username).child("conceptsProgress").child("mistakes").setValue(0);
         mDatabase.child("users").child(username).child("conceptsProgress").child("pososto").setValue(0);
-
+        mDatabase.child("users").child(username).child("conceptsProgress").child("commentsfalse").setValue(false);
         mDatabase.child("users").child(username).child("conceptsProgress").child("commentsfalse").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

@@ -23,7 +23,7 @@ public class ClassesTestFourthActivity extends AppCompatActivity {
     TextView question;
 
     public RadioGroup radioGroup;
-
+    boolean getters;
     RadioButton radio1;
     RadioButton radio2;
     RadioButton radio3;
@@ -50,7 +50,18 @@ public class ClassesTestFourthActivity extends AppCompatActivity {
         radio1 = findViewById(R.id.first);
         radio2 = findViewById(R.id.second);
         radio3 = findViewById(R.id.third);
+        mDatabase.child("users").child(username).child("conceptsProgress").child("gettersfalse").setValue(false);
+        mDatabase.child("users").child(username).child("conceptsProgress").child("gettersfalse").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                getters=(boolean)dataSnapshot.getValue(); //get "false" value from firebase
+            }
 
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
         mDatabase.child("questions").child("classes").child("getters").child("first").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -95,7 +106,11 @@ public class ClassesTestFourthActivity extends AppCompatActivity {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 1){
                                     getValue++;
                                     mDatabase.child("users").child(username).child("classesProgress").child("mistakes").setValue(getValue);
-
+                                    getters=true;
+                                    if(getters) //if you did a mistake on OOP
+                                    {
+                                        mDatabase.child("users").child(username).child("classesProgress").child("gettersfalse").setValue(getters); //set value to true
+                                    }
                                     //check();
                                 }
                             }
@@ -115,7 +130,11 @@ public class ClassesTestFourthActivity extends AppCompatActivity {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 2){
                                     getValue++;
                                     mDatabase.child("users").child(username).child("classesProgress").child("mistakes").setValue(getValue);
-
+                                    getters=true;
+                                    if(getters) //if you did a mistake on OOP
+                                    {
+                                        mDatabase.child("users").child(username).child("classesProgress").child("gettersfalse").setValue(getters); //set value to true
+                                    }
                                     //check();
                                 }
                             }
@@ -134,7 +153,11 @@ public class ClassesTestFourthActivity extends AppCompatActivity {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 3){
                                     getValue++;
                                     mDatabase.child("users").child(username).child("classesProgress").child("mistakes").setValue(getValue);
-
+                                    getters=true;
+                                    if(getters) //if you did a mistake on OOP
+                                    {
+                                        mDatabase.child("users").child(username).child("classesProgress").child("gettersfalse").setValue(getters); //set value to true
+                                    }
                                     // check();
                                 }
                             }

@@ -52,6 +52,7 @@ public class ConceptsTestThirdActivity extends AppCompatActivity {
         radio1 = findViewById(R.id.first);
         radio2 = findViewById(R.id.second);
         radio3 = findViewById(R.id.third);
+        mDatabase.child("users").child(username).child("conceptsProgress").child("introfalse").setValue(false);
         mDatabase.child("users").child(username).child("conceptsProgress").child("introfalse").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

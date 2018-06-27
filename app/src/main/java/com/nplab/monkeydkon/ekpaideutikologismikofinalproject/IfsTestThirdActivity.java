@@ -17,7 +17,7 @@ import com.google.firebase.database.ValueEventListener;
 public class IfsTestThirdActivity extends AppCompatActivity {
 
     String username;
-
+    boolean switchs;
     private DatabaseReference mDatabase;
 
     TextView question;
@@ -50,7 +50,18 @@ public class IfsTestThirdActivity extends AppCompatActivity {
         radio1 = findViewById(R.id.first);
         radio2 = findViewById(R.id.second);
         radio3 = findViewById(R.id.third);
+        mDatabase.child("users").child(username).child("ifsProgress").child("switchfalse").setValue(false); //reinitialize value
+        mDatabase.child("users").child(username).child("ifsProgress").child("switchfalse").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                switchs=(boolean)dataSnapshot.getValue(); //get "false" value from firebase
+            }
 
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
         mDatabase.child("questions").child("ifs").child("switch").child("first").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -95,7 +106,11 @@ public class IfsTestThirdActivity extends AppCompatActivity {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 1){
                                     getValue++;
                                     mDatabase.child("users").child(username).child("ifsProgress").child("mistakes").setValue(getValue);
-
+                                    switchs=true;
+                                    if(switchs)
+                                    {
+                                        mDatabase.child("users").child(username).child("ifsProgress").child("switchfalse").setValue(switchs);
+                                    }
                                     //check();
                                 }
                             }
@@ -115,7 +130,11 @@ public class IfsTestThirdActivity extends AppCompatActivity {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 2){
                                     getValue++;
                                     mDatabase.child("users").child(username).child("ifsProgress").child("mistakes").setValue(getValue);
-
+                                    switchs=true;
+                                    if(switchs)
+                                    {
+                                        mDatabase.child("users").child(username).child("ifsProgress").child("switchfalse").setValue(switchs);
+                                    }
                                     //check();
                                 }
                             }
@@ -134,7 +153,11 @@ public class IfsTestThirdActivity extends AppCompatActivity {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 3){
                                     getValue++;
                                     mDatabase.child("users").child(username).child("ifsProgress").child("mistakes").setValue(getValue);
-
+                                    switchs=true;
+                                    if(switchs)
+                                    {
+                                        mDatabase.child("users").child(username).child("ifsProgress").child("switchfalse").setValue(switchs);
+                                    }
                                     // check();
                                 }
                             }

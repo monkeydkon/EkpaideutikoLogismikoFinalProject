@@ -27,7 +27,7 @@ public class ClassesTestFifthActivity extends AppCompatActivity {
     RadioButton radio1;
     RadioButton radio2;
     RadioButton radio3;
-
+    boolean methods;
     Boolean correct = false;
 
     int getValue;
@@ -50,7 +50,18 @@ public class ClassesTestFifthActivity extends AppCompatActivity {
         radio1 = findViewById(R.id.first);
         radio2 = findViewById(R.id.second);
         radio3 = findViewById(R.id.third);
+        mDatabase.child("users").child(username).child("conceptsProgress").child("methodsfalse").setValue(false);
+        mDatabase.child("users").child(username).child("conceptsProgress").child("methodsfalse").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                methods=(boolean)dataSnapshot.getValue(); //get "false" value from firebase
+            }
 
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
         mDatabase.child("questions").child("classes").child("methods").child("first").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -95,7 +106,11 @@ public class ClassesTestFifthActivity extends AppCompatActivity {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 1){
                                     getValue++;
                                     mDatabase.child("users").child(username).child("classesProgress").child("mistakes").setValue(getValue);
-
+                                    methods=true;
+                                    if(methods) //if you did a mistake on OOP
+                                    {
+                                        mDatabase.child("users").child(username).child("classesProgress").child("methodsfalse").setValue(methods); //set value to true
+                                    }
                                     //check();
                                 }
                             }
@@ -115,7 +130,11 @@ public class ClassesTestFifthActivity extends AppCompatActivity {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 2){
                                     getValue++;
                                     mDatabase.child("users").child(username).child("classesProgress").child("mistakes").setValue(getValue);
-
+                                    methods=true;
+                                    if(methods) //if you did a mistake on OOP
+                                    {
+                                        mDatabase.child("users").child(username).child("classesProgress").child("methodsfalse").setValue(methods); //set value to true
+                                    }
                                     //check();
                                 }
                             }
@@ -134,7 +153,11 @@ public class ClassesTestFifthActivity extends AppCompatActivity {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 3){
                                     getValue++;
                                     mDatabase.child("users").child(username).child("classesProgress").child("mistakes").setValue(getValue);
-
+                                    methods=true;
+                                    if(methods) //if you did a mistake on OOP
+                                    {
+                                        mDatabase.child("users").child(username).child("classesProgress").child("methodsfalse").setValue(methods); //set value to true
+                                    }
                                     // check();
                                 }
                             }
@@ -202,7 +225,7 @@ public class ClassesTestFifthActivity extends AppCompatActivity {
                         }
                     });
 
-                    Toast.makeText(getApplicationContext(),"You passed the test",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"You pvhgvhgvghjassed the test"+String.valueOf(getValue),Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(getApplicationContext(),MainContentActivity.class);
                     intent.putExtra("whoIsLoggedIn", username);
                     startActivity(intent);

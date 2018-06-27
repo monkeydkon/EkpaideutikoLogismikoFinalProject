@@ -17,7 +17,7 @@ import com.google.firebase.database.ValueEventListener;
 public class IfsTestFirstActivity extends AppCompatActivity {
 
     String username;
-
+    boolean ifs;
     private DatabaseReference mDatabase;
 
     TextView question;
@@ -53,7 +53,19 @@ public class IfsTestFirstActivity extends AppCompatActivity {
 
         mDatabase.child("users").child(username).child("ifsProgress").child("mistakes").setValue(0);
         mDatabase.child("users").child(username).child("ifsProgress").child("pososto").setValue(0);
+        mDatabase.child("users").child(username).child("ifsProgress").child("iffalse").setValue(false); //reinitialize value
+        mDatabase.child("users").child(username).child("ifsProgress").child("iffalse").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                ifs=(boolean)dataSnapshot.getValue(); //get "false" value from firebase
 
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
         mDatabase.child("questions").child("ifs").child("if").child("first").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -97,7 +109,12 @@ public class IfsTestFirstActivity extends AppCompatActivity {
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 1){
                                     getValue++;
+                                    ifs=true;
                                     mDatabase.child("users").child(username).child("ifsProgress").child("mistakes").setValue(getValue);
+                                    if(ifs)
+                                    {
+                                        mDatabase.child("users").child(username).child("ifsProgress").child("iffalse").setValue(ifs);
+                                    }
 
                                     //check();
                                 }
@@ -117,8 +134,12 @@ public class IfsTestFirstActivity extends AppCompatActivity {
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 2){
                                     getValue++;
+                                    ifs=true;
                                     mDatabase.child("users").child(username).child("ifsProgress").child("mistakes").setValue(getValue);
-
+                                    if(ifs)
+                                    {
+                                        mDatabase.child("users").child(username).child("ifsProgress").child("iffalse").setValue(ifs);
+                                    }
                                     //check();
                                 }
                             }
@@ -136,8 +157,12 @@ public class IfsTestFirstActivity extends AppCompatActivity {
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 3){
                                     getValue++;
+                                    ifs=true;
                                     mDatabase.child("users").child(username).child("ifsProgress").child("mistakes").setValue(getValue);
-
+                                    if(ifs)
+                                    {
+                                        mDatabase.child("users").child(username).child("ifsProgress").child("iffalse").setValue(ifs);
+                                    }
                                     // check();
                                 }
                             }

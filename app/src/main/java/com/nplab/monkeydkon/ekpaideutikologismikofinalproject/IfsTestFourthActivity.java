@@ -19,7 +19,7 @@ public class IfsTestFourthActivity extends AppCompatActivity {
     String username;
 
     private DatabaseReference mDatabase;
-
+    boolean fors;
     TextView question;
 
     public RadioGroup radioGroup;
@@ -50,7 +50,18 @@ public class IfsTestFourthActivity extends AppCompatActivity {
         radio1 = findViewById(R.id.first);
         radio2 = findViewById(R.id.second);
         radio3 = findViewById(R.id.third);
+        mDatabase.child("users").child(username).child("ifsProgress").child("forfalse").setValue(false); //reinitialize value
+        mDatabase.child("users").child(username).child("ifsProgress").child("forfalse").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                fors=(boolean)dataSnapshot.getValue(); //get "false" value from firebase
+            }
 
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
         mDatabase.child("questions").child("ifs").child("for").child("first").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -95,7 +106,11 @@ public class IfsTestFourthActivity extends AppCompatActivity {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 1){
                                     getValue++;
                                     mDatabase.child("users").child(username).child("ifsProgress").child("mistakes").setValue(getValue);
-
+                                    fors=true;
+                                    if(fors)
+                                    {
+                                        mDatabase.child("users").child(username).child("ifsProgress").child("forfalse").setValue(fors);
+                                    }
                                     //check();
                                 }
                             }
@@ -115,7 +130,11 @@ public class IfsTestFourthActivity extends AppCompatActivity {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 2){
                                     getValue++;
                                     mDatabase.child("users").child(username).child("ifsProgress").child("mistakes").setValue(getValue);
-
+                                    fors=true;
+                                    if(fors)
+                                    {
+                                        mDatabase.child("users").child(username).child("ifsProgress").child("forfalse").setValue(fors);
+                                    }
                                     //check();
                                 }
                             }
@@ -134,7 +153,11 @@ public class IfsTestFourthActivity extends AppCompatActivity {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 3){
                                     getValue++;
                                     mDatabase.child("users").child(username).child("ifsProgress").child("mistakes").setValue(getValue);
-
+                                    fors=true;
+                                    if(fors)
+                                    {
+                                        mDatabase.child("users").child(username).child("ifsProgress").child("forfalse").setValue(fors);
+                                    }
                                     // check();
                                 }
                             }

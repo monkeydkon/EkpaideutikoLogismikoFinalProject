@@ -17,7 +17,7 @@ import com.google.firebase.database.ValueEventListener;
 public class ClassesTestSecondActivity extends AppCompatActivity {
 
     String username;
-
+    boolean classe;
     private DatabaseReference mDatabase;
 
     TextView question;
@@ -50,7 +50,18 @@ public class ClassesTestSecondActivity extends AppCompatActivity {
         radio1 = findViewById(R.id.first);
         radio2 = findViewById(R.id.second);
         radio3 = findViewById(R.id.third);
+        mDatabase.child("users").child(username).child("conceptsProgress").child("classesfalse").setValue(false);
+        mDatabase.child("users").child(username).child("conceptsProgress").child("classesfalse").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                classe=(boolean)dataSnapshot.getValue(); //get "false" value from firebase
+            }
 
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
         mDatabase.child("questions").child("classes").child("classes").child("first").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -95,6 +106,11 @@ public class ClassesTestSecondActivity extends AppCompatActivity {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 1){
                                     getValue++;
                                     mDatabase.child("users").child(username).child("classesProgress").child("mistakes").setValue(getValue);
+                                    classe=true;
+                                    if(classe) //if you did a mistake on OOP
+                                    {
+                                        mDatabase.child("users").child(username).child("classesProgress").child("classesfalse").setValue(classe); //set value to true
+                                    }
 
                                     //check();
                                 }
@@ -115,7 +131,11 @@ public class ClassesTestSecondActivity extends AppCompatActivity {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 2){
                                     getValue++;
                                     mDatabase.child("users").child(username).child("classesProgress").child("mistakes").setValue(getValue);
-
+                                    classe=true;
+                                    if(classe) //if you did a mistake on OOP
+                                    {
+                                        mDatabase.child("users").child(username).child("classesProgress").child("classesfalse").setValue(classe); //set value to true
+                                    }
                                     //check();
                                 }
                             }
@@ -134,7 +154,11 @@ public class ClassesTestSecondActivity extends AppCompatActivity {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 3){
                                     getValue++;
                                     mDatabase.child("users").child(username).child("classesProgress").child("mistakes").setValue(getValue);
-
+                                    classe=true;
+                                    if(classe) //if you did a mistake on OOP
+                                    {
+                                        mDatabase.child("users").child(username).child("classesProgress").child("classesfalse").setValue(classe); //set value to true
+                                    }
                                     // check();
                                 }
                             }

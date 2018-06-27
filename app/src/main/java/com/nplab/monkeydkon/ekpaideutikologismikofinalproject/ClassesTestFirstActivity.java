@@ -19,7 +19,7 @@ public class ClassesTestFirstActivity extends AppCompatActivity {
     String username;
 
     private DatabaseReference mDatabase;
-
+    boolean oop;
     TextView question;
 
     public RadioGroup radioGroup;
@@ -53,7 +53,18 @@ public class ClassesTestFirstActivity extends AppCompatActivity {
 
         mDatabase.child("users").child(username).child("classesProgress").child("mistakes").setValue(0);
         mDatabase.child("users").child(username).child("classesProgress").child("pososto").setValue(0);
+        mDatabase.child("users").child(username).child("conceptsProgress").child("oopfalse").setValue(false);
+        mDatabase.child("users").child(username).child("conceptsProgress").child("oopfalse").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                oop=(boolean)dataSnapshot.getValue(); //get "false" value from firebase
+            }
 
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
         mDatabase.child("questions").child("classes").child("oop").child("first").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -98,7 +109,11 @@ public class ClassesTestFirstActivity extends AppCompatActivity {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 1){
                                     getValue++;
                                     mDatabase.child("users").child(username).child("classesProgress").child("mistakes").setValue(getValue);
-
+                                    oop=true;
+                                    if(oop) //if you did a mistake on OOP
+                                    {
+                                        mDatabase.child("users").child(username).child("classesProgress").child("oopfalse").setValue(oop); //set value to true
+                                    }
                                     //check();
                                 }
                             }
@@ -118,6 +133,11 @@ public class ClassesTestFirstActivity extends AppCompatActivity {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 2){
                                     getValue++;
                                     mDatabase.child("users").child(username).child("classesProgress").child("mistakes").setValue(getValue);
+                                    oop=true;
+                                    if(oop)
+                                    {
+                                        mDatabase.child("users").child(username).child("classesProgress").child("oopfalse").setValue(oop);
+                                    }
 
                                     //check();
                                 }
@@ -137,7 +157,11 @@ public class ClassesTestFirstActivity extends AppCompatActivity {
                                 if (Integer.parseInt(dataSnapshot.getValue().toString()) != 3){
                                     getValue++;
                                     mDatabase.child("users").child(username).child("classesProgress").child("mistakes").setValue(getValue);
-
+                                    oop=true;
+                                    if(oop)
+                                    {
+                                        mDatabase.child("users").child(username).child("classesProgress").child("oopfalse").setValue(oop);
+                                    }
                                     // check();
                                 }
                             }
