@@ -124,7 +124,7 @@ public class ConceptsTestFirstActivity extends AppCompatActivity {
             }
         });
 
-        Toast.makeText(getApplicationContext(),String.valueOf(test1),Toast.LENGTH_SHORT).show();
+     //   Toast.makeText(getApplicationContext(),String.valueOf(test1),Toast.LENGTH_SHORT).show();
 
 
 

@@ -63,7 +63,7 @@ public class ProfChangeActivity extends AppCompatActivity {
         mDatabase.child("questions").child(chapter).child(which).child(finalChosen).child("answers").child("correct").setValue(Integer.parseInt(editText9.getText().toString()));
         mDatabase.child("questions").child(chapter).child(which).child(finalChosen).child("question").setValue(editText5.getText().toString());
 
-        Intent intent = new Intent(this,ProfActivity.class);
+        Intent intent = new Intent(this,FirstProfActivity.class);
         startActivity(intent);
 
 

@@ -318,7 +318,7 @@ public class MainContentActivity extends AppCompatActivity {
     }
 
     public void signout(View view){
-        Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
+        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
         startActivity(intent);
     }
 
